@@ -1,27 +1,18 @@
-# VaccinexApp
+# VaccineX
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+VaccineX is a distributed marketplace for genome data used in vaccine development. Most viruses mutates over time and in order to be up to date in a vaccine development proccess research teams must have access to recent genome mutations. 
 
-## Development server
+* Collaborative - Marketplace allows research groups share data with their partners worldwide for free by controlling access to that information using proxy re-encryption scheme provided by NuCypher.
+* Distributed - The network is censorship-resistant and allows research teams share pre-encrypted genome data using IPFS without centralized cloud services.
+* Decentralized - VaccineX is a blockchain agnostic project which gives users an ability pay for digital assets using Ethereum and Tezos crypto currencies.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Requirements
 
-## Code scaffolding
+* Node >10
+* Angular cli (Run `npm install -g @angular/cli` to install if you don't have it)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. Clone this repository
+2. Run application by typing `ng serve`
+3. Check port :4200
