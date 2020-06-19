@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav sidebarFlex" fixedInViewport *ngIf="1"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+      <div class="sidebar-container">
+      <div style="flex: 1; font-family: CircularStd; font-weight:200">
+        <mat-nav-list class="sidebar-menu">
+          <a mat-list-item href="#" routerLink="/dashboard">Dashboard</a>
+          <a mat-list-item href="#" routerLink="/viruses">Viruses</a>
+          <a mat-list-item href="#" routerLink="/genomes">Genomes</a>
+          <a mat-list-item href="#" routerLink="/profile">Profile</a>
+
+          <a mat-list-item href="#" *ngIf="!auth.loggedIn" (click)="auth.login()">Login</a>
+          <a mat-list-item href="#" *ngIf="auth.loggedIn" (click)="auth.logout()">Log out</a>
+        </mat-nav-list>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="1" class="navbar-container">
+      <!-- <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button> -->
+      <!-- <span>Verifications</span> -->
+      <span class="header-title">VaccineX</span>
+      <span style="margin-left: auto"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.6903 16.293C18.2203 13.94 17.8487 12.7593 17.8487 9C17.8487 5.13398 14.5587 2 10.5001 2C6.44145 2 3.15147 5.13402 3.15147 9C3.15147 11.027 3.09479 11.7837 2.80181 12.7127C2.43747 13.87 1.68951 14.978 0.309461 16.293C-0.351669 16.923 0.116647 18 1.05184 18H6.87827L6.8254 18.5C6.8254 20.433 8.47041 22 10.4997 22C12.529 22 14.174 20.433 14.174 18.5L14.1211 18H19.9479C20.8835 18 21.3518 16.923 20.6903 16.293ZM10.5004 21C9.05102 21 7.87576 19.8804 7.87576 18.5L7.92863 18H13.0715L13.1251 18.5C13.1251 19.8804 11.9498 21 10.5004 21ZM1.05217 17C4.20147 14 4.20147 12 4.20147 9C4.20147 5.68668 7.02141 3 10.5001 3C13.9787 3 16.7987 5.68668 16.799 9C16.799 12 16.799 14 19.9483 17H1.05217Z" fill="#646678"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z" fill="#3591FB"/>
+        </svg>
+      </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
