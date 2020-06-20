@@ -19,6 +19,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import { GenomeTableComponent } from './genome-table/genome-table.component';
+import { ResearchersListComponent } from './researchers-list/researchers-list.component';
+import { VaccinesTableComponent } from './vaccines-table/vaccines-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -26,7 +33,10 @@ import {MatCardModule} from '@angular/material/card';
   declarations: [
     AppComponent,
     NavigationComponent,
-    ProfileComponent
+    ProfileComponent,
+    GenomeTableComponent,
+    ResearchersListComponent,
+    VaccinesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +51,10 @@ import {MatCardModule} from '@angular/material/card';
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatMenuModule,
     
   ],
   providers: [],

@@ -1,0 +1,185 @@
+
+.full-width-table {
+    width: 100%;
+}
+
+.mat-header-cell{
+    background-color: #F6F9FC;
+}
+  
+.vaccines-table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0px 0px 2px 0px #dedede;
+    border-radius: 5px;
+}
+
+.vaccines-table-header {
+    color: #191D28;
+    background-color: #F6F9FC;
+}
+
+.vaccines-header-item {
+    padding: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.vaccines-table-row {
+    border-bottom: 1px solid #F6F9FC;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.vaccines-table-row-item {
+    padding: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #67758D;
+
+    &.number {
+        font-size: 16px;
+    }
+
+    &.info {
+        font-size: 16px;
+    }
+
+    &.logo {
+        padding: 0;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &.name {
+        min-width: 125px;
+        padding: 0 0 0 10px;
+        color: #424B5F;
+    }
+    
+    &.amount {
+        &.positive {
+            color: #51C08A;
+        }
+        &.negative {
+            color: #F3361C;
+        }
+    }
+
+    &.date {
+        color: #97A4BA;
+    }
+
+    &.status {
+        &.pending {
+            color: #A037FC;
+        }
+        &.canceled {
+            color: #F3361C;
+        }
+        &.completed {
+            color: #3794FC;
+        }
+    }
+}
+
+
+@media (max-width: 1439.98px) {
+    .vaccines-table-row-item {
+        &.logo {
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1199.98px) {
+
+    .vaccines {
+        padding: 20px;
+    }
+
+    .vaccines-header-item {
+        padding: 15px 15px 0 15px;
+    }
+
+    .vaccines-table-row-item {
+        padding: 20px 15px;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+
+    .vaccines {
+        padding: 15px;
+    }
+
+    .vaccines-header-item {
+        padding: 15px 10px 0 10px;
+    }
+
+    .vaccines-table-row-item {
+        padding: 20px 10px;
+
+        &.number {
+            font-size: 14px;
+        }
+        &.logo {
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        &.info {
+            font-size: 14px;
+        }
+        &.value {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .vaccines {
+        padding: 10px 5px;
+    }
+
+    .vaccines-header-item {
+        padding: 15px 10px 0 10px;
+    }
+
+    .vaccines-table-row-item {
+        padding: 20px 10px;
+
+        &.number {
+            font-size: 14px;
+        }
+        &.info {
+            font-size: 14px;
+        }
+        &.logo {
+            display: none;
+        }
+        &.name {
+            padding: 0;
+        }
+        &.value {
+            font-size: 14px;
+        }
+    }
+}
+
+

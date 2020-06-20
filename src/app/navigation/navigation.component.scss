@@ -62,3 +62,26 @@
 .mat-drawer-side {
   border:none;
 }
+
+.link-item {
+  color: black;
+  font-family: Open Sans;
+  font-size: 15px;
+  color: #1e1e1e;
+  text-decoration: none;
+
+  &:hover {
+      text-decoration: none;
+      color: #1e1e1e;
+  }
+
+  &.active {
+      font-weight: bold;
+      text-decoration: none;
+      color: #1e1e1e;
+
+      .menu-item {
+          border-left: 1.5px solid #0020f5;
+      }
+  }                        
+}
