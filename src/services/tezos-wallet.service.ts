@@ -4,6 +4,8 @@ import { Tezos, TezosToolkit } from '@taquito/taquito';
 import { TezosWalletUtil, KeyStore } from 'conseiljs';
 import { InMemorySigner } from '@taquito/signer';
 import { generateMnemonic } from 'bip39';
+import { tezosSample } from './tezoscontract';
+import * as ls from "local-storage";
 
 import { TezosWallet, TezosFaucetKey, TezosMemorySigner, TezosNetwork } from '../models'
 import { Observable } from 'rxjs';
@@ -48,8 +50,11 @@ export class TezosWalletService {
   public async generateAccount(mnemonic: string): Promise<KeyStore> {
     const keystore = await TezosWalletUtil.unlockIdentityWithMnemonic(mnemonic, '');
     console.log(`account id: ${keystore.publicKeyHash}`);
+    ls.set('publicKeyHash', keystore.publicKeyHash)
     console.log(`public key: ${keystore.publicKey}`);
+    ls.set('publicKey', keystore.publicKey)
     console.log(`secret key: ${keystore.privateKey}`);
+    ls.set('privateKey', keystore.privateKey)
     return keystore
   }
 
@@ -63,14 +68,19 @@ export class TezosWalletService {
     };
   }
 
-  public async getBalance (address: string) {
+  public async getBalance (address: string): Promise<any> {
     Tezos.tz
       .getBalance(address)
-      .then(balance => console.log(`${balance.toNumber() / 1000000} ꜩ`))
-      .catch(error => console.log(JSON.stringify(error)));
+      .then(balance => {
+        return balance.toNumber() / 1000000
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error))
+        return
+      });
   }
 
-  public async sendTransfer (address_to: string, amount: number) {
+  public async sendTransfer (address_to: string, amount: number): Promise<any> {
     Tezos.contract.transfer({ to: address_to, amount: amount })
     .then(op => {
         console.log(`Waiting for ${op.hash} to be confirmed...`);
@@ -79,6 +89,26 @@ export class TezosWalletService {
     })
     .then(hash => console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`))
     .catch(error => console.log(`Error: ${error} ${JSON.stringify(error, null, 2)}`));
+  }
+
+  public async originateContract(param: any): Promise<any> {
+    try {
+      console.log('Deploying Ligo simple contract...');
+      const op = await Tezos.contract.originate({
+        balance: '1',
+        code: tezosSample,
+        init: { int: param },
+        fee: 30000,
+        storageLimit: 2000,
+        gasLimit: 90000,
+      });
+      console.log('Awaiting confirmation...');
+      const contract = await op.contract();
+      console.log('Storage', await contract.storage());
+      console.log('Operation hash:', op.hash, 'Included in block level:', op.includedInBlock);
+    } catch (ex) {
+      console.error(ex);
+    }  
   }
 
   public async callContract(method: string, contract: string, amount: number) {
