@@ -6,6 +6,18 @@
 .mat-header-cell{
     background-color: #F6F9FC;
 }
+
+.table-title {
+    font-family: Circular Std !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px !important;
+    // line-height: 25px;
+    letter-spacing: 0.25px;
+    margin: 0;
+
+    color: #67758D;
+}
   
 .vaccines-table {
     width: 100%;
@@ -33,6 +45,21 @@
     &:last-child {
         border-bottom: none;
     }
+}
+
+.action-button {
+    border-radius: 20px;
+    background: blue;
+    padding: 11px 30px;
+    color: white;
+    margin-right: 10px;
+
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;  
 }
 
 .vaccines-table-row-item {

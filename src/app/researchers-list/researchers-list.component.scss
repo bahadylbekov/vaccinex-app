@@ -1,0 +1,67 @@
+.researchers-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: scroll;
+  padding: 30px;
+}
+
+.researchers-list-item {
+  background: #ffffff;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  min-height: 100%;
+  margin-right: 30px;
+}
+
+.section-researchers-list .Card .researcher-information {
+  padding: 25px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-researchers-list .Card .researcher-title {
+  font-family: Circular Std;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  width: 140px;
+  text-decoration: none !important;
+  color: #1A1A1A;
+  margin: 0;
+  margin-top: 15px;
+}
+
+.section-researchers-list .Card .researcher-location {
+  font-family: Circular Std;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  width: 140px;
+  text-align: center;
+  color: #79828B !important;
+  margin: 0;
+  margin-top: 3px;
+}
+
+.section-researchers-list .Card .actions-button {
+  padding: 11px 33px;
+  background: #51C08A;
+  border: none !important;
+  border-radius: 30px;
+  color: white;
+  margin-top: 30px;
+}
+
+.section-researchers-list .Card .researcher-information .researcher-image {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}

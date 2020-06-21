@@ -1,1 +1,15 @@
-<p>researchers-list works!</p>
+    <div class="researchers-row section-researchers-list">
+        <div *ngFor="let researcher of researchers; let researcherIndex = index" class="row-item">
+                <div class="Card researchers-list-item">
+                        <div class="researcher-information">
+                            <img src="assets/img/sample.png" class="researcher-image">
+                            <p class="researcher-title">    
+                                {{researcher.name}}
+                            </p>
+                            <p class="researcher-location">
+                                {{researcher.city}}, {{researcher.country}}
+                            </p>
+                        </div>
+                </div>
+        </div>
+    </div>

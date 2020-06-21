@@ -8,13 +8,10 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface VaccinesTableItem {
   name: string;
   id: number;
-  lastUpdate: Date;
-  application: string;
-  category: string;
-  remainingTime: string;
-  status: string
+  family: string;
+  fatality_rate: string;
+  origin: string;
 }
-
 
 @Component({
   selector: 'app-vaccines-table',
@@ -26,23 +23,23 @@ export class VaccinesTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   dataSource: MatTableDataSource<VaccinesTableItem>;
-  status: string = 'All';
+  family: string = 'All';
   EXAMPLE_DATA: VaccinesTableItem[] = [
-    {id: 1, name: 'Hydrogen', lastUpdate: new Date('1968-11-16T00:00:00'), application: 'British Citizenship', category:'Cover Letter', remainingTime:'33 hours 50 min', status: 'Processing'},
-    {id: 2, name: 'Helium', lastUpdate: new Date('1968-11-17T00:00:00'), application: 'British Citizenship', category:'Full Service', remainingTime:'33 hours 50 min', status: 'Completed'},
-    {id: 3, name: 'Lithium', lastUpdate: new Date('1968-11-18T00:00:00'), application: 'British Citizenship', category:'Full Service', remainingTime:'33 hours 50 min', status: 'Completed'},
-    {id: 4, name: 'Beryllium', lastUpdate: new Date('1968-11-19T00:00:00'), application: 'ILR', category:'Full Service', remainingTime:'33 hours 50 min', status: 'Completed'},
-    {id: 5, name: 'Boron', lastUpdate: new Date('1968-11-20T00:00:00'), application: 'ILR', category:'Cover Letter', remainingTime:'33 hours 50 min', status: 'Completed'},
-  
+    {id: 1, name: 'SARS-CoV-2', family:'Coronaviridae', fatality_rate: '1.5%', origin: 'China'},
+    {id: 2, name: 'HIV/AIDS', family: 'Retroviridae', fatality_rate: '1.21%', origin: 'Africa (Continent)'},
+    {id: 3, name: 'Influenza', family: 'Retroviridae', fatality_rate: '1.21%', origin: 'Spain'},
+    {id: 4, name: 'Hepatitis C', family: 'Flaviviridae', fatality_rate: '1.21%', origin: 'Europe (Continent)'},
+    {id: 5, name: 'Astrovirus', family: 'Astroviridae', fatality_rate: '1.21%', origin: 'Worldwide'},
+    {id: 5, name: 'Ebola virus', family: 'Filoviridae', fatality_rate: '1.21%', origin: 'Africa (Continent)'},
   ];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'lastUpdate', 'application', 'category', 'remainingTime', 'status'];
+  displayedColumns = ['id', 'name', 'family', 'fatality_rate', 'origin'];
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.EXAMPLE_DATA);
 
-    this.dataSource.filterPredicate = (data: VaccinesTableItem, filter: string) => data.status == this.status || this.status == 'All';
+    this.dataSource.filterPredicate = (data: VaccinesTableItem, filter: string) => data.family == this.family || this.family == 'All';
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -53,11 +50,11 @@ export class VaccinesTableComponent implements AfterViewInit, OnInit {
     
   }
 
-  ChangeStatus(status: string) {
-    console.log(status);
-    this.status = status;
-    console.log(this.status);
-    this.dataSource.filter = status;
+  ChangeFamily(family: string) {
+    console.log(family);
+    this.family = family;
+    console.log(this.family);
+    this.dataSource.filter = family;
     
     
   }

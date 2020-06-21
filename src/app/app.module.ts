@@ -26,6 +26,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import { VirusComponent } from './virus/virus.component';
+import { VirusesComponent } from './viruses/viruses.component';
+import { GenomesComponent } from './genomes/genomes.component';
+import { OrganizationsComponent } from './organizations/organizations.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 
 
@@ -36,7 +41,13 @@ import { MatMenuModule } from '@angular/material/menu';
     ProfileComponent,
     GenomeTableComponent,
     ResearchersListComponent,
-    VaccinesTableComponent
+    VaccinesTableComponent,
+    GenomeTableComponent,
+    VirusComponent,
+    VirusesComponent,
+    GenomesComponent,
+    OrganizationsComponent,
+    OrganizationComponent
   ],
   imports: [
     BrowserModule,

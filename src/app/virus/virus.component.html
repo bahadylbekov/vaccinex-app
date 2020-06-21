@@ -1,5 +1,5 @@
 <div class="content">
-    <div class="profile-row">
+    <div class="virus-row">
         <div class="col s12 m4 l2 user-logo">
             <div style="margin: auto; width: fit-content; min-width:150px;">
                 <img src="https://www.thispersondoesnotexist.com/image" style="width: 150px; margin:auto; border-radius: 100%;">
@@ -19,21 +19,12 @@
                 Medical Research group from Stanford university
             </p>
         </div>
-        <div class="col s12 m4 l4 user-buttons">
-            <span style="float: right;">
-                <button mat-mini-fab class="p-btn">...</button>
-            </span>
-            <span style="float: right;">
-                <button mat-flat-button class="acc-btn">Connect</button>
-            </span>
-
-        </div>
     </div>
-    <div class="profile-information">
+    <div class="virus-information">
         <div class="row">
             <div class="col s12 m4 l4 xl4">
-                <p class="profile-section-title">Information</p>
-                <mat-card class="profile-section-information">
+                <p class="virus-section-title">Information</p>
+                <mat-card class="virus-section-information">
                     <div class="row">
                         <div class="col s6" style="color: #42505C;">
                             <p class="sec-card key">Specialization</p>
@@ -51,8 +42,8 @@
                 </mat-card>
             </div>
             <div class="col s12 m8 l8 xl8">
-                <p class="profile-section-title">Account</p>
-                <mat-card class="profile-section-information">
+                <p class="virus-section-title">Account</p>
+                <mat-card class="virus-section-information">
                     <div class="user-activity-container">
                         <div class="activity-item">
                             <div class="activity-image">
@@ -86,12 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="profile-section">
-        <!-- <p class="profile-section-title">Genomes</p> -->
-        <app-vaccines-table></app-vaccines-table>
-    </div>
-    <div class="profile-section">
-        <p class="profile-section-title">Researchers</p>
-        <app-researchers-list></app-researchers-list>
+    <div class="virus-section">
+        <app-genome-table></app-genome-table>
     </div>
 </div>
