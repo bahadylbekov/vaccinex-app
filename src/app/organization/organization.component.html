@@ -1,1 +1,87 @@
-<p>organization works!</p>
+<div class="content">
+    <div class="profile-row">
+        <div class="col s12 m4 l6 user-information">
+            <p class="user-information-text title">
+                Stanford Medical Research
+            </p>
+            <p class="user-information-text address">
+                Stanford, CA
+            </p>
+            <p class="user-information-text contact">
+                medresearch@stanford.edu
+            </p>
+            <p class="user-information-text description">
+                Medical Research group from Stanford university
+            </p>
+        </div>
+        <div class="col s12 m4 l2 user-logo">
+            <div style="margin: auto; width: fit-content; min-width:150px;">
+                <img src="https://www.thispersondoesnotexist.com/image" style="width: 150px; margin:auto; border-radius: 100%;">
+            </div>
+        </div>
+    </div>
+    <div class="profile-information">
+        <div class="row">
+            <div class="col s12 m4 l4 xl4">
+                <p class="profile-section-title">Information</p>
+                <mat-card class="profile-section-information">
+                    <div class="row">
+                        <div class="col s6" style="color: #42505C;">
+                            <p class="sec-card key">Specialization</p>
+                            <p class="sec-card key">Deals</p>
+                            <p class="sec-card key">Genomes</p>
+                            <p class="sec-card key last">Funded ammount</p>
+                        </div>
+                        <div class="col s6">
+                            <p class="sec-card">HIV and Sars-Cov-2</p>
+                            <p class="sec-card">45</p>
+                            <p class="sec-card">13 of 2 viruses</p>
+                            <p class="sec-card last">150,000$</p>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col s12 m8 l8 xl8">
+                <p class="profile-section-title">Account</p>
+                <mat-card class="profile-section-information">
+                    <div class="user-activity-container">
+                        <div class="activity-item">
+                            <div class="activity-image">
+                                <img src="assets/img/sample.png">
+                            </div>
+                            <div class="activity-info">
+                                <p class="activity-item-text">Researchers</p>
+                                <p class="activity-item-text value">13 people</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-image">
+                                <img src="assets/img/sample.png">
+                            </div>
+                            <div class="activity-info">
+                                <p class="activity-item-text">Total Genomes</p>
+                                <p class="activity-item-text value">12</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-image">
+                                <img src="assets/img/sample.png">
+                            </div>
+                            <div class="activity-info">
+                                <p class="activity-item-text">Average simularity</p>
+                                <p class="activity-item-text value">83 %</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="profile-section">
+        <app-genome-table></app-genome-table>
+    </div>
+    <div class="profile-section">
+        <p class="profile-section-title">Researchers</p>
+        <app-researchers-list></app-researchers-list>
+    </div>
+</div>

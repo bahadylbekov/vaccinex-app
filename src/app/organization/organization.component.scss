@@ -1,0 +1,186 @@
+.content{
+    padding: 60px 30px;
+    font-family: CircularStd;
+}
+
+.profile-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-logo {
+    padding: 0 10px;
+}
+
+.user-information {
+    padding: 0 80px 0 0;
+}
+
+.user-information-text{
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    color: #1E1E1E;
+
+    &.title {
+        font-size: 36px;
+    }
+
+    &.address {
+        margin-top: 10px;
+        color: #757373;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    &.contact {
+        margin-bottom: 20px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    &.description {
+        font-size: 14px;
+        line-height: 18px;
+        color: #42505C;    
+    }
+}
+
+
+.user-buttons{
+    margin-left:auto
+}
+
+.acc-btn {
+    border-radius: 20px;
+    background: green;
+    padding: 11px 30px;
+    color: white;
+    margin-right: 10px;
+
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.p-btn {
+    border-radius: 100%;
+    background: #C4CFDD;
+    color: white;
+    box-shadow: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-information {
+    margin-top: 60px;
+}
+
+.profile-section {
+    margin-top: 30px;
+}
+
+.profile-section-title {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.25px;
+    margin: 0;
+
+    color: #67758D;
+}
+
+.profile-section-information {
+    margin-top: 27px;
+    padding: 27px 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;    
+}
+
+.sec-card {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.25px;
+    color: #000000;
+    margin-bottom: 13px; 
+
+    &.last {
+        margin-bottom: 0;
+    }
+
+    &.key {
+        color: #42505C;
+    }
+}
+
+.user-activity-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.activity-item-text {
+    margin: 0;
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #6468A1;
+
+    &.value {
+        font-size: 24px;
+        line-height: 36px;
+        color: #262C7C;
+    }
+}
+
+.activity-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.activity-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.profile-selector {
+    margin-top: 30px;
+}

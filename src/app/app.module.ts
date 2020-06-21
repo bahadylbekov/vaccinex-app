@@ -21,7 +21,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import { GenomeTableComponent } from './genome-table/genome-table.component';
 import { ResearchersListComponent } from './researchers-list/researchers-list.component';
-import { VaccinesTableComponent } from './vaccines-table/vaccines-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -41,7 +40,6 @@ import { OrganizationComponent } from './organization/organization.component';
     ProfileComponent,
     GenomeTableComponent,
     ResearchersListComponent,
-    VaccinesTableComponent,
     GenomeTableComponent,
     VirusComponent,
     VirusesComponent,
