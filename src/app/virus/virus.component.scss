@@ -5,20 +5,26 @@
 
 .virus-row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.user-logo {
-    padding: 0 10px;
+.virus-logo {
+    padding: 0;
 }
 
-.user-information {
+.virus-information {
     padding: 0 17px;
+
+    &.main {
+        margin-top: 10px;
+        max-width: 70%;
+        padding: 0;
+    }
 }
 
-.user-information-text{
+.virus-information-text{
     font-family: Circular Std;
     font-style: normal;
     font-weight: normal;
@@ -27,30 +33,23 @@
     margin-top: 0px;
     margin-bottom: 0;
     color: #1E1E1E;
-
-    &.address {
-        margin-top: 5px;
-        margin-bottom: 20px;
-        color: #757373;
-        font-size: 13px;
-        line-height: 16px;
-    }
-
-    &.contact {
-        margin-bottom: 20px;
-        font-size: 13px;
-        line-height: 16px;    
-    }
+    text-align: center;
 
     &.description {
-        font-size: 16px;
-        line-height: 20px;
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 17px;
         color: #42505C;    
+    }
+
+    &.title {
+        font-size: 22px;
+        line-height: 27px;
     }
 }
 
 
-.user-buttons{
+.virus-buttons{
     margin-left:auto
 }
 
@@ -133,7 +132,7 @@
     }
 }
 
-.user-activity-container {
+.virus-activity-container {
     display: flex;
     flex-direction: row;
     padding: 0 30px;

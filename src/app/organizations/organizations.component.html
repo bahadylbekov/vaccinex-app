@@ -1,1 +1,18 @@
-<p>organizations works!</p>
+<div class="organizations-section">
+    <p class="organizations-section-title">Organizations</p>
+    <div class="organizations-row section-organizations-list">
+        <div *ngFor="let organization of organizations; let organizationIndex = index" class="row-item">
+                <div class="Card organizations-list-item">
+                        <div class="organization-information">
+                            <img src="assets/img/sample.png" class="organization-image">
+                            <p class="organization-title">    
+                                {{organization.name}}
+                            </p>
+                            <p class="organization-location">
+                                {{organization.city}}, {{organization.country}}
+                            </p>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>

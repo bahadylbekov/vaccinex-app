@@ -15,7 +15,7 @@
 }
 
 .user-information {
-    padding: 0 17px;
+    padding: 0 80px 0 0;
 }
 
 .user-information-text{
@@ -28,23 +28,26 @@
     margin-bottom: 0;
     color: #1E1E1E;
 
+    &.title {
+        font-size: 36px;
+    }
+
     &.address {
-        margin-top: 5px;
-        margin-bottom: 20px;
+        margin-top: 10px;
         color: #757373;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 16px;
     }
 
     &.contact {
         margin-bottom: 20px;
-        font-size: 13px;
-        line-height: 16px;    
+        font-size: 12px;
+        line-height: 16px;
     }
 
     &.description {
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 18px;
         color: #42505C;    
     }
 }

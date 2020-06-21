@@ -1,1 +1,18 @@
-<p>viruses works!</p>
+<div class="viruses-section">
+    <p class="viruses-section-title">Viruses</p>
+    <div class="viruses-row section-viruses-list">
+        <div *ngFor="let virus of viruses; let organizationIndex = index" class="row-item">
+                <div class="Card viruses-list-item">
+                        <div class="virus-information">
+                            <img src="assets/img/sample.png" class="virus-image">
+                            <p class="virus-title">    
+                                {{virus.name}}
+                            </p>
+                            <p class="virus-family">
+                                {{virus.family}}
+                            </p>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>

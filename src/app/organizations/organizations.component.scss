@@ -1,0 +1,92 @@
+
+.organizations-section {
+    margin-top: 30px;
+    padding: 0 30px;
+}
+
+.organizations-section-title {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.25px;
+    margin: 0;
+
+    color: #67758D;
+}
+
+.organizations-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.organizations-row .row-item {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+  
+.organizations-list-item {
+    background: #ffffff;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    min-height: 100%;
+}
+  
+.section-organizations-list .Card .organization-information {
+    padding: 25px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.section-organizations-list .Card .organization-title {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    letter-spacing: 0.25px;
+    text-align: center;
+    width: 200px;
+    text-decoration: none !important;
+    color: #1A1A1A;
+    margin: 0;
+    margin-top: 15px;
+}
+  
+.section-organizations-list .Card .organization-location {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    width: 200px;
+    text-align: center;
+    color: #79828B !important;
+    margin: 0;
+    margin-top: 3px;
+}
+  
+.section-organizations-list .Card .actions-button {
+    padding: 11px 33px;
+    background: #51C08A;
+    border: none !important;
+    border-radius: 30px;
+    color: white;
+    margin-top: 30px;
+}
+  
+.section-organizations-list .Card .organization-information .organization-image {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+  
