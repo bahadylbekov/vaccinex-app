@@ -25,6 +25,7 @@
     "@taquito/taquito": "^6.0.1-beta.0",
     "bip39": "^3.0.2",
     "conseiljs": "^0.4.3",
+    "ipfs-mini": "^1.1.5",
     "local-storage": "^2.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
