@@ -1,0 +1,42 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-title {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.25px;
+    margin: 0;
+}
+
+.modal-content {
+    margin: 20px 0 0;
+}
+
+.modal-content-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-content-item .item-label {
+    margin: 0;
+    margin-right: 50px;
+    font-family: Circular Std;
+}
+
+.modal-content-item .mat-form-field {
+    width: 200px;
+    font-family: Circular Std;
+}
+
+.modal-container .mat-dialog-actions .mat-button {
+    font-family: Circular Std;
+}

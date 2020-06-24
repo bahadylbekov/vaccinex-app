@@ -13,6 +13,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,7 +32,15 @@ import { VirusesComponent } from './viruses/viruses.component';
 import { GenomesComponent } from './genomes/genomes.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { OrganizationComponent } from './organization/organization.component';
-
+import { NewGenomeComponent, NewGenomeModalComponent } from './new-genome/new-genome.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { NewVirusComponent, NewVirusModalComponent } from './new-virus/new-virus.component';
+import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-tezos-account/new-tezos-account.component';
+import { NewOrganizationComponent } from './new-organization/new-organization.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -45,7 +55,15 @@ import { OrganizationComponent } from './organization/organization.component';
     VirusesComponent,
     GenomesComponent,
     OrganizationsComponent,
-    OrganizationComponent
+    OrganizationComponent,
+    NewGenomeComponent,
+    NewGenomeModalComponent,
+    NewVirusComponent,
+    NewVirusModalComponent,
+    NewTezosAccountComponent,
+    NewTezosAccountModalComponent,
+    NewOrganizationComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,9 +82,21 @@ import { OrganizationComponent } from './organization/organization.component';
     MatSortModule,
     MatTableModule,
     MatMenuModule,
-    
-  ],
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MaterialFileInputModule,
+    ],
+    exports: [
+
+    ],
   providers: [],
+  entryComponents: [
+    NewGenomeModalComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

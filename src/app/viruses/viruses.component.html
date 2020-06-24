@@ -5,12 +5,12 @@
                 <div class="Card viruses-list-item">
                         <div class="virus-information">
                             <img src="assets/img/sample.png" class="virus-image">
-                            <p class="virus-title">    
+                            <a class="virus-title" [routerLink]="['/viruses', virus.id]">
                                 {{virus.name}}
-                            </p>
-                            <p class="virus-family">
+                            </a>
+                            <a class="virus-family" [routerLink]="['/viruses', virus.id]">
                                 {{virus.family}}
-                            </p>
+                            </a>
                         </div>
                 </div>
         </div>

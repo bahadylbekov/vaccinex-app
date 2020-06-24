@@ -1,0 +1,30 @@
+<div class="modal-container">
+    <p mat-dialog-title class="modal-title">Create new Tezos account</p>
+    <div mat-dialog-content class="modal-content">
+      <div class="modal-content-item">
+        <p class="item-label">Name</p>
+        <mat-form-field class="item-input">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="data.name" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Email</p>
+        <mat-form-field class="item-input">
+          <mat-label>Email</mat-label>
+          <input #email matInput [(ngModel)]="data.email" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Password</p>
+        <mat-form-field class="item-input">
+          <mat-label>Password</mat-label>
+          <input #password matInput [(ngModel)]="data.password" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Close</button>
+      <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+    </div>
+  </div>

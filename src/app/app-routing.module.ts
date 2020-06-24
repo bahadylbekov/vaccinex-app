@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'virus',
+    path: 'viruses/:id',
     component: VirusComponent,
     canActivate: [AuthGuard],
   },
@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'organization',
+    path: 'organizations/:id',
     component: OrganizationComponent,
     canActivate: [AuthGuard],
   },

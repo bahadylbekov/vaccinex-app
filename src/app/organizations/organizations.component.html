@@ -5,12 +5,12 @@
                 <div class="Card organizations-list-item">
                         <div class="organization-information">
                             <img src="assets/img/sample.png" class="organization-image">
-                            <p class="organization-title">    
+                            <a class="organization-title" [routerLink]="['/organizations', organization.id]">
                                 {{organization.name}}
-                            </p>
-                            <p class="organization-location">
+                            </a>
+                            <a class="organization-location" [routerLink]="['/organizations', organization.id]">
                                 {{organization.city}}, {{organization.country}}
-                            </p>
+                            </a>
                         </div>
                 </div>
         </div>

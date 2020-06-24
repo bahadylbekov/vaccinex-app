@@ -1,0 +1,48 @@
+<div class="modal-container">
+    <p mat-dialog-title class="modal-title">Create new virus</p>
+    <div mat-dialog-content class="modal-content">
+      <div class="modal-content-item">
+        <p class="item-label">Virus Name</p>
+        <mat-form-field class="item-input">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="virus.name" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">File</p>
+        <mat-form-field class="item-input">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="virus.description" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Family</p>
+        <mat-form-field>
+          <mat-label>Virus families</mat-label>      
+          <mat-select [formControl]="familyControl" (selectionChange)="onChangeFamily($event)" required>
+            <mat-option *ngFor="let family of familiesList" [value]="family">{{family.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Fatality rate</p>
+        <mat-form-field class="item-input">
+          <mat-label>Fatality rate</mat-label>
+          <input matInput [(ngModel)]="virus.fatality_rate" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Virus spread</p>
+        <mat-form-field>
+          <mat-label>Virus spread</mat-label>      
+          <mat-select [formControl]="spreadControl" (selectionChange)="onChangeSpread($event)" required>
+            <mat-option *ngFor="let spread of spreadList" [value]="spread">{{spread.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Close</button>
+      <button mat-button (click)="createNewVirus()" [mat-dialog-close]="virus.name" cdkFocusInitial>Save</button>
+    </div>
+  </div>
