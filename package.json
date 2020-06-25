@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
     "@auth0/auth0-spa-js": "^1.10.0",
-    "@taquito/taquito": "^6.0.1-beta.0",
+    "@taquito/taquito": "^6.3.2-beta.0",
     "axios": "^0.19.2",
     "bip39": "^3.0.2",
     "conseiljs": "^0.4.3",

@@ -5,6 +5,7 @@ export class Genome {
     genome_name: string;
     organization_name: string;
     file_url: string;
+    price: number;
     virus_name: string;
     simularity_rate: string;
     origin: string;

@@ -28,6 +28,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Virus</th>
             <td mat-cell *matCellDef="let row">{{row.virus_name}}</td>
         </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+          <td mat-cell *matCellDef="let row">{{row.price}}</td>
+      </ng-container>
   
         <ng-container matColumnDef="simularity_rate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Simularity</th>
@@ -47,12 +52,14 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-button class="action-button">
+            <button *ngIf="row.created_by != created_by" mat-button class="action-button green" (click)="buyToken(row.genome_id, row.price)">
               Buy
+            </button>
+            <button *ngIf="row.created_by === created_by" mat-button class="action-button" (click)="sellToken(row.genome_id, row.price)">
+              Sell
             </button>
           </td>
         </ng-container>
-
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

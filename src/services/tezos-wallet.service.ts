@@ -9,6 +9,7 @@ import * as ls from "local-storage";
 
 import { TezosWallet, TezosFaucetKey, TezosMemorySigner, TezosNetwork } from '../models'
 import { Observable } from 'rxjs';
+import { contractJSON } from 'src/assets/smart-contract';
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +82,7 @@ export class TezosWalletService {
   }
 
   public async sendTransfer (address_to: string, amount: number): Promise<any> {
-    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey('edskRvWaNTDNCnT1wQxfS3hsBfH1ShgbwVwEA7vLYv6xN1i284N5vtvJkj6NnrvmsxZ1i3AKRdAsLDbqxpGad4P1VST553oq2K') });
     Tezos.contract.transfer({ to: address_to, amount: amount })
     .then(op => {
         console.log(`Waiting for ${op.hash} to be confirmed...`);
@@ -92,16 +93,15 @@ export class TezosWalletService {
     .catch(error => console.log(`Error: ${error} ${JSON.stringify(error, null, 2)}`));
   }
 
-  public async originateContract(param: any): Promise<any> {
+  public async originateContract(): Promise<any> {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
     try {
-      console.log('Deploying Ligo simple contract...');
       const op = await Tezos.contract.originate({
-        balance: '1',
-        code: tezosSample,
-        init: { int: param },
-        fee: 30000,
-        storageLimit: 2000,
-        gasLimit: 90000,
+        code: contractJSON,
+        init: { "prim": "Pair", "args": [ { "string": ls.get('publicKeyHash') }, [] ] },
+        fee: 100000,
+        storageLimit: 20000,
+        gasLimit: 500000,
       });
       console.log('Awaiting confirmation...');
       const contract = await op.contract();
@@ -112,13 +112,39 @@ export class TezosWalletService {
     }  
   }
 
-  public async callContract(method: string, contract: string, amount: number) {
-    return Tezos.contract.at('KT1JVErLYTgtY8uGGZ4mso2npTSxqVLDRVbC')
+  public async buyTokenFromContract(tokenId: number, price: number) {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
+    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
       .then(contract => {
-        const i = 7;
+        return contract.methods.buy(tokenId, price).send();
+      })
+      .then(op => {
+        console.log(`Waiting for ${op.hash} to be confirmed...`);
+        return op.confirmation(1).then(() => op.hash);
+      })
+      .then(hash => console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`))
+      .catch(error => console.log(`Error: ${JSON.stringify(error, null, 2)}`));
+  }
 
-        console.log(`Incrementing storage value by ${i}...`);
-        return contract.methods.increment(i).send();
+  public async createTokenUsingContract(tokenId: number, price: number, tokenURI: string) {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
+    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
+      .then(contract => {
+        return contract.methods.build(100, tokenId, true, ls.get('publicKeyHash'), price, tokenURI).send();
+      })
+      .then(op => {
+        console.log(`Waiting for ${op.hash} to be confirmed...`);
+        return op.confirmation(1).then(() => op.hash);
+      })
+      .then(hash => console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`))
+      .catch(error => console.log(`Error: ${JSON.stringify(error, null, 2)}`));
+  }
+
+  public async sellTokenFromContract(tokenId: number, price: number) {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
+    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
+      .then(contract => {
+        return contract.methods.sell(tokenId, price).send();
       })
       .then(op => {
         console.log(`Waiting for ${op.hash} to be confirmed...`);
