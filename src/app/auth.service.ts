@@ -70,7 +70,6 @@ export class AuthService {
         if (loggedIn) {
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
-          console.log('result')
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
@@ -91,7 +90,6 @@ export class AuthService {
         appState: { target: redirectPath },
         responseType: 'token id_token',
       });
-      console.log(result)
     });
   }  
 

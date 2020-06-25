@@ -14,9 +14,12 @@ export class IpfsService {
 
   ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
 
-  public async UploadData(data: string): Promise<any> {
+  async UploadData(data: any): Promise<any> {
     await this.ipfs.add(data)
-      .then(result => console.log(result))
+      .then(result => {
+        console.log(result)
+        return result
+      })
       .catch(error => console.log(error));
   }
 

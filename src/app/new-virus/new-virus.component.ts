@@ -1,15 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Virus } from '../viruses/viruses.component';
-
-export interface VirusModel {
-  name: string;
-  description: string;
-  spread: string;
-  family: string;
-  fatality_rate: string;
-}
+import { Virus } from 'src/models';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-new-virus',
@@ -17,17 +10,17 @@ export interface VirusModel {
   styleUrls: ['./new-virus.component.scss']
 })
 export class NewVirusComponent implements OnInit {
-  name: string;
+  is_active: boolean = true
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewVirusModalComponent, {
-      data: {name: this.name}
+      data: {is_active: this.is_active}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.name = result
+      this.is_active = result
     });
   }
 
@@ -69,15 +62,26 @@ export class NewVirusModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<NewVirusModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public virus: VirusModel,
-    private _fb: FormBuilder,) {}
+    @Inject(MAT_DIALOG_DATA) public virus: Virus,
+    public api: ApiService,
+    private _fb: FormBuilder,
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   async createNewVirus(): Promise<any> {
-    await console.log(this.virus)
+    this.virus.photo_url = 'https://duckduckgo.com/i/60f0472f.png'
+    this.virus.is_active = true
+    this.virus.is_vaccine = false
+    console.log(this.virus)
+    await this.api.createVirus$(this.virus).subscribe(
+      res => {
+        console.log(res)
+        window.location.reload();
+      }
+    );
   }
 
   onChangeSpread(data: any): void {

@@ -34,15 +34,19 @@ export class ApiService {
   }
 
   createGenome$(data: Genome): Observable<any> {
-    return this.http.post(this.baseURL + '/genome', data);
+    return this.http.post(this.baseURL + '/genomes', data);
   }
 
   getGenomes$(): Observable<any> {
     return this.http.get(this.baseURL + '/genomes');
   }
 
-  getGenomesByID$(id: string): Observable<any> {
-    return this.http.get(this.baseURL + '/genomes/?id=' + id);
+  getGenomesByVirus$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/genomes/' + id);
+  }
+
+  getGenomesByOrganization$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/organization-genome/' + id);
   }
 
   // TEZOS-ACCOUNT SECTION METHODS
@@ -76,11 +80,11 @@ export class ApiService {
   }
 
   createVirus$(data: Virus): Observable<any> {
-    return this.http.post(this.baseURL + '/virus', data);
+    return this.http.post(this.baseURL + '/viruses', data);
   }
 
   getVirusByID$(id: string): Observable<any> {
-    return this.http.get(this.baseURL + '/viruses/?id=' + id);
+    return this.http.get(this.baseURL + '/viruses/' + id);
   }
 
 }

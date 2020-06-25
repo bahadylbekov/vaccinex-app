@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
+import { Genome } from 'src/models';
 
 @Component({
   selector: 'app-genomes',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenomesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api: ApiService,
+    public auth: AuthService,
+  ) { }
 
   ngOnInit(): void {
   }

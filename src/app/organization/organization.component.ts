@@ -10,7 +10,7 @@ import { Organization } from 'src/models';
   styleUrls: ['./organization.component.scss']
 })
 export class OrganizationComponent implements OnInit {
-  organization: Organization
+  organization = new Organization
 
   constructor(public auth: AuthService, private api: ApiService, private router: Router) { }
 
@@ -22,7 +22,6 @@ export class OrganizationComponent implements OnInit {
     const id = this.router.url.split('/').slice(-1).pop()
     this.api.getOrganizationByID$(id).subscribe(
       res => {
-        console.log(res)
         this.organization = res
       }, error => console.log(error))
   }

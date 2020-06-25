@@ -10,7 +10,6 @@ import { ProfileComponent, CreateProfileModalComponent } from './profile/profile
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -40,7 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NewVirusComponent, NewVirusModalComponent } from './new-virus/new-virus.component';
 import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-tezos-account/new-tezos-account.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,6 @@ import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-t
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     LayoutModule,
     MatButtonModule,
     MatIconModule,
@@ -88,6 +87,8 @@ import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-t
     ReactiveFormsModule,
     MatSelectModule,
     MaterialFileInputModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
     ],
     exports: [
 

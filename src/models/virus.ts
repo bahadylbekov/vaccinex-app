@@ -1,7 +1,7 @@
 import { Time } from '@angular/common'
 
 export class Virus {
-    virus_id      :number
+    virus_id      :number 
 	virus_name         :string
 	description  :string
 	photo_url     :string

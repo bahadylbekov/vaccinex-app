@@ -5,11 +5,11 @@
         <p class="item-label">Virus Name</p>
         <mat-form-field class="item-input">
           <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="virus.name" required>
+          <input matInput [(ngModel)]="virus.virus_name" required>
         </mat-form-field>
       </div>
       <div class="modal-content-item">
-        <p class="item-label">File</p>
+        <p class="item-label">Description</p>
         <mat-form-field class="item-input">
             <mat-label>Description</mat-label>
             <input matInput [(ngModel)]="virus.description" required>
@@ -43,6 +43,6 @@
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Close</button>
-      <button mat-button (click)="createNewVirus()" [mat-dialog-close]="virus.name" cdkFocusInitial>Save</button>
+      <button mat-button (click)="createNewVirus()" cdkFocusInitial>Save</button>
     </div>
   </div>

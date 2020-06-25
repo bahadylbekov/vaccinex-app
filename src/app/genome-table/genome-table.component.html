@@ -1,31 +1,32 @@
 <div style="padding:0 10px;">
     <div>
       <span>
-        <mat-menu #appMenu="matMenu">
+        <!-- <mat-menu #appMenu="matMenu">
           <button mat-menu-item (click)="ChangeStatus('All')">All</button>
           <button mat-menu-item (click)="ChangeStatus('New')">New</button>
           <button mat-menu-item (click)="ChangeStatus('Sold')">Sold</button>
-        </mat-menu>
-        <button mat-icon-button [matMenuTriggerFor]="appMenu" style="width:unset; color:blue">
+        </mat-menu> -->
+        <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu" style="width:unset; color:blue">
           {{status}}
-        </button> Genomes
+        </button>  -->
+        Genomes
       </span>
     </div>
     <div style="margin-top: 20px">
       <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
-        <ng-container matColumnDef="organization">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Organization</th>
-          <td mat-cell *matCellDef="let row">{{row.organization}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="genome_name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let row" ><a [routerLink]="['/organization', row.id]">{{row.name}}</a></td>
+          <td mat-cell *matCellDef="let row">{{row.genome_name}}</td>
         </ng-container>
   
-        <ng-container matColumnDef="virus">
+        <ng-container matColumnDef="organization_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Organization</th>
+          <td mat-cell *matCellDef="let row" ><a [routerLink]="['/organization', row.genome_id]">{{row.organization_name}}</a></td>
+        </ng-container>
+  
+        <ng-container matColumnDef="virus_name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Virus</th>
-            <td mat-cell *matCellDef="let row">{{row.virus}}</td>
+            <td mat-cell *matCellDef="let row">{{row.virus_name}}</td>
         </ng-container>
   
         <ng-container matColumnDef="simularity_rate">

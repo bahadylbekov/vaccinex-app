@@ -5,25 +5,30 @@
       <p class="item-label">Genome Name</p>
       <mat-form-field class="item-input">
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="data.name" required>
+        <input matInput [(ngModel)]="genome.genome_name" required>
       </mat-form-field>
     </div>
-    <div class="modal-content-item">
+    <div class="modal-content-item column">
+      <div class="modal-content-item">
       <p class="item-label">File</p>
       <mat-form-field class="item-input">
         <mat-label>Paste file</mat-label>
-          <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Paste file" [(ngModel)]="data.file" required></ngx-mat-file-input>
+          <ngx-mat-file-input #removableInput formControlName="requiredfile" (change)="uploadFile($event)" placeholder="Paste file" required></ngx-mat-file-input>
           <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
             <mat-icon>clear</mat-icon>
           </button>
       </mat-form-field>
+      </div>
+      <div class="modal-content-item file-line" *ngIf="ipfsLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
     </div>
     <div class="modal-content-item">
       <p class="item-label">Virus</p>
       <mat-form-field>
         <mat-label>Viruses</mat-label>      
-        <mat-select [formControl]="viruses" required>
-          <mat-option *ngFor="let virus of virusesList" [value]="virus">{{virus}}</mat-option>
+        <mat-select [formControl]="virusesControl" (selectionChange)="onChangeVirus($event)" required>
+          <mat-option *ngFor="let virus of virusesList" [value]="virus">{{virus.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -31,12 +36,12 @@
       <p class="item-label">Origin</p>
       <mat-form-field class="item-input">
         <mat-label>Country of origin</mat-label>
-        <input matInput [(ngModel)]="data.origin" required>
+        <input matInput [(ngModel)]="genome.origin" required>
       </mat-form-field>
     </div>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Close</button>
-    <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+    <button mat-button [disabled]="ipfsLoading" (click)="createNewGenome('kek')" cdkFocusInitial>Save</button>
   </div>
 </div>

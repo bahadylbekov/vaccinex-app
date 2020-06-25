@@ -11,7 +11,7 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  profile: Profile
+  profile = new Profile
   is_active :boolean = true;
 
   constructor(public auth: AuthService, private api: ApiService, public dialog: MatDialog) { }

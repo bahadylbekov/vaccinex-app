@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
 import { ApiService } from 'src/app/api.service';
+import { AuthService } from '../auth.service';
 
 export interface Organization {
   organizationID :number
@@ -29,7 +30,7 @@ export interface Organization {
 })
 export class OrganizationsComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(public auth: AuthService, private api: ApiService) { }
   organizations: Organization[] = []
 
   ngOnInit(): void {
