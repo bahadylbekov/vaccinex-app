@@ -1,9 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ApiService } from 'src/app/api.service';
-import { Profile } from '../../models';
+import { Tezos, TezosToolkit } from '@taquito/taquito';
+import { Profile, TezosAccount } from '../../models';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { TezosWalletService } from 'src/services/tezos-wallet.service';
+import * as ls from "local-storage";
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +15,21 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   profile = new Profile
+  tezosAccount = new TezosAccount
   is_active :boolean = true;
 
-  constructor(public auth: AuthService, private api: ApiService, public dialog: MatDialog) { }
+  constructor(
+    public auth: AuthService, 
+    private api: ApiService, 
+    public dialog: MatDialog,
+    public tezos: TezosWalletService,
+  ) { }
 
   async ngOnInit() {
     await this.loadProfile()
-    // this.loadMyGenomes()
-    // this.loadTezosAccounts()
+    await this.loadMyGenomes()
+    await this.loadTezosAccounts()
+    await this.getMyBalance()
   }
 
   openModal(): void {
@@ -54,9 +64,27 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  async getMyBalance (): Promise<any> {
+    const publicKeyHash = ls.get('publicKeyHash')
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
+    Tezos.tz
+      .getBalance(publicKeyHash.toString())
+      .then(balance => {
+        this.tezosAccount.balance = balance.toNumber() / 1000000
+        return
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error))
+        return
+      });
+  }
+
   loadTezosAccounts() {
     this.api.getMyTezosAccounts$().subscribe(
-      res => console.log(res)
+      res => {
+        console.log(res)
+        this.tezosAccount = res[0]
+      }
     );
   }
 }

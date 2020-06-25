@@ -55,8 +55,12 @@ export class ApiService {
     return this.http.get(this.baseURL + '/tezos/accounts');
   }
 
+  getOrganizationTezosAccounts$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/tezos/organization/accounts/' + id);
+  }
+
   createTezosAccount$(data: TezosAccount): Observable<any> {
-    return this.http.post(this.baseURL + '/tezos/account', data);
+    return this.http.post(this.baseURL + '/tezos/accounts', data);
   }
 
   // ORGANIZATIONS SECTION METHODS

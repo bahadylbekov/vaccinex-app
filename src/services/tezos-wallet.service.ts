@@ -13,8 +13,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TezosWalletService {
-  tezosNetwork: TezosNetwork
+  tezosNetwork = new TezosNetwork
   tezos = new TezosToolkit();
 
   httpOptions = {
@@ -37,7 +38,8 @@ export class TezosWalletService {
     return this.tezosNetwork
   }
 
-  public async generateFaucetKey(key: any, strength = 256) {
+  public async generateFaucetKey(key: any, strength = 256): Promise<string> {
+    this.useTezosTestNet();
     const email = key.email;
     const password = key.password;
     const mnemonic = generateMnemonic(strength);
@@ -45,20 +47,17 @@ export class TezosWalletService {
 
     const signer = await InMemorySigner.fromFundraiser(email, password, mnemonic);
     this.tezos.setProvider({ rpc: this.tezosNetwork.rpcUrl, signer: signer });
-  }
-
-  public async generateAccount(mnemonic: string): Promise<KeyStore> {
-    const keystore = await TezosWalletUtil.unlockIdentityWithMnemonic(mnemonic, '');
-    console.log(`account id: ${keystore.publicKeyHash}`);
-    ls.set('publicKeyHash', keystore.publicKeyHash)
-    console.log(`public key: ${keystore.publicKey}`);
-    ls.set('publicKey', keystore.publicKey)
-    console.log(`secret key: ${keystore.privateKey}`);
-    ls.set('privateKey', keystore.privateKey)
-    return keystore
+    const publicKey = await this.tezos.signer.publicKey()
+    ls.set('publicKey', publicKey)
+    const publicKeyHash = await this.tezos.signer.publicKeyHash()
+    ls.set('publicKeyHash', publicKeyHash)
+    const secretKey = await this.tezos.signer.secretKey()
+    ls.set('secretKey', secretKey)
+    return mnemonic;
   }
 
   public async getContract(address: string) {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
     const contract = await this.tezos.contract.at(address);
 
     return {
@@ -69,6 +68,7 @@ export class TezosWalletService {
   }
 
   public async getBalance (address: string): Promise<any> {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
     Tezos.tz
       .getBalance(address)
       .then(balance => {
@@ -81,6 +81,7 @@ export class TezosWalletService {
   }
 
   public async sendTransfer (address_to: string, amount: number): Promise<any> {
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
     Tezos.contract.transfer({ to: address_to, amount: amount })
     .then(op => {
         console.log(`Waiting for ${op.hash} to be confirmed...`);

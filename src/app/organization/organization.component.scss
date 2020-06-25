@@ -161,8 +161,8 @@
     color: #6468A1;
 
     &.value {
-        font-size: 24px;
-        line-height: 36px;
+        font-size: 13px;
+        line-height: 25px;
         color: #262C7C;
     }
 }
@@ -179,7 +179,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 10px;
+    // margin-left: 10px;
 }
 
 .profile-selector {

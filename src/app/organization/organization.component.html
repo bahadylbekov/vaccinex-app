@@ -46,30 +46,21 @@
                 <mat-card class="profile-section-information">
                     <div class="user-activity-container">
                         <div class="activity-item">
-                            <div class="activity-image">
-                                <img src="assets/img/sample.png">
-                            </div>
                             <div class="activity-info">
-                                <p class="activity-item-text">Researchers</p>
-                                <p class="activity-item-text value">13 people</p>
+                                <p class="activity-item-text">Name</p>
+                                <p class="activity-item-text value">{{tezosAccount.name}}</p>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-image">
-                                <img src="assets/img/sample.png">
-                            </div>
                             <div class="activity-info">
-                                <p class="activity-item-text">Total Genomes</p>
-                                <p class="activity-item-text value">12</p>
+                                <p class="activity-item-text">Balance</p>
+                                <p class="activity-item-text value">{{tezosAccount.balance}}</p>
                             </div>
                         </div>
                         <div class="activity-item">
-                            <div class="activity-image">
-                                <img src="assets/img/sample.png">
-                            </div>
                             <div class="activity-info">
-                                <p class="activity-item-text">Average simularity</p>
-                                <p class="activity-item-text value">83 %</p>
+                                <p class="activity-item-text">Address</p>
+                                <p class="activity-item-text value">{{tezosAccount.address}}</p>
                             </div>
                         </div>
                     </div>

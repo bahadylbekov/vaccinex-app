@@ -8,16 +8,16 @@ class TezosWallet {
 export class TezosAccount {
   id: number;
   name: string;
-  organizationID: string;
+  organization_id: string;
   address: string;
-  balance: string;
+  balance: any;
   tokens: string;
-  isActive         :string
-  isPrivate           :string
-  createdBy        :string
-  createdAt        :Time
-  updatedBy        :string
-  updatedAt        :Time
+  is_active         :boolean
+  is_private           :boolean
+  created_by        :string
+  created_at        :Time
+  updated_by        :string
+  updated_at        :Time
 }
 
 class TezosFaucetKey {
@@ -35,11 +35,10 @@ class TezosMemorySigner {
     mnemonic: string;
 }
 
-export interface TezosNetwork {
-    type: TezosNetworkType;
-    name?: string;
-    rpcUrl?: string;
-  }
+export class TezosNetwork {
+    name: string;
+    rpcUrl: string;
+}
   
   export enum TezosNetworkType {
     MAINNET = 'mainnet',
