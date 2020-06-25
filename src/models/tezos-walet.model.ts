@@ -1,6 +1,23 @@
+import { Time } from '@angular/common';
+
 class TezosWallet {
     balance: string;
     publicKey: string;
+}
+
+export class TezosAccount {
+  id: number;
+  name: string;
+  organizationID: string;
+  address: string;
+  balance: string;
+  tokens: string;
+  isActive         :string
+  isPrivate           :string
+  createdBy        :string
+  createdAt        :Time
+  updatedBy        :string
+  updatedAt        :Time
 }
 
 class TezosFaucetKey {

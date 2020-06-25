@@ -46,6 +46,7 @@
     }
 
     &.description {
+        max-width: 500px;
         font-size: 14px;
         line-height: 18px;
         color: #42505C;    
@@ -95,6 +96,11 @@
 
 .profile-section {
     margin-top: 30px;
+
+    &.centered {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .profile-section-title {
@@ -183,4 +189,21 @@
 
 .profile-selector {
     margin-top: 30px;
+}
+
+.modal-button {
+    border-radius: 20px;
+    background: blue;
+    padding: 11px 30px;
+    color: white;
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;  
+
+    &.green {
+        background: green;
+    }
 }

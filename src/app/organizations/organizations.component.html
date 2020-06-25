@@ -4,11 +4,11 @@
         <div *ngFor="let organization of organizations; let organizationIndex = index" class="row-item">
                 <div class="Card organizations-list-item">
                         <div class="organization-information">
-                            <img src="assets/img/sample.png" class="organization-image">
-                            <a class="organization-title" [routerLink]="['/organizations', organization.id]">
-                                {{organization.name}}
+                            <img src="{{organization.photo_url}}" class="organization-image">
+                            <a class="organization-title" [routerLink]="['/organizations', organization.organization_id]">
+                                {{organization.organization_name}}
                             </a>
-                            <a class="organization-location" [routerLink]="['/organizations', organization.id]">
+                            <a class="organization-location" [routerLink]="['/organizations', organization.organization_id]">
                                 {{organization.city}}, {{organization.country}}
                             </a>
                         </div>

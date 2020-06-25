@@ -1,9 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
+import { Time } from '@angular/common';
+import { ApiService } from '../api.service';
 
 export interface Virus {
   id: string;
   name: string;
+  description  :string;
+  photoUrl     :string;
   family: string;
+  fatalityRate :string
+	spread       :string
+	isActive     :boolean
+	isVaccine    :boolean
+	createdBy    :string
+	createdAt    :Time
+	updatedBy    :string
+	updatedAt    :Time
 }
 
 @Component({
@@ -13,17 +26,21 @@ export interface Virus {
 })
 export class VirusesComponent implements OnInit {
 
-  constructor() { }
-  viruses: Virus[] = [
-    {id: 'nusvdni0w1', name: 'SARS-CoV-2', family:'Coronaviridae'},
-    {id: 'nusvdni0w9', name: 'HIV/AIDS', family: 'Retroviridae'},
-    {id: 'nusvdni0w7', name: 'Influenza', family: 'Retroviridae',},
-    {id: 'nusvdni0w6', name: 'Hepatitis C', family: 'Flaviviridae',},
-    {id: 'nusvdni0w5', name: 'Astrovirus', family: 'Astroviridae',},
-    {id: 'nusvdni0w4', name: 'Ebola virus', family: 'Filoviridae',}
-  ]
+  constructor(
+    private api: ApiService,
+  ) { }
+  viruses: Virus[] = []
 
   ngOnInit(): void {
+    this.loadViruses()
+  }
+
+  loadViruses () {
+    this.api.getViruses$().subscribe(
+      res => {
+        this.viruses = res;
+      }
+    );
   }
 
 }

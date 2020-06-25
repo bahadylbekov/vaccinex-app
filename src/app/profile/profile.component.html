@@ -2,21 +2,21 @@
     <div class="profile-row">
         <div class="col s12 m4 l6 user-information">
             <p class="user-information-text title">
-                Stanford Medical Research
+                {{profile.organization_name}}
             </p>
             <p class="user-information-text address">
-                Stanford, CA
+                {{profile.city}}, {{profile.country}}
             </p>
             <p class="user-information-text contact">
-                medresearch@stanford.edu
+                {{profile.email}}
             </p>
             <p class="user-information-text description">
-                Medical Research group from Stanford university
+                {{profile.description}}
             </p>
         </div>
         <div class="col s12 m4 l2 user-logo">
             <div style="margin: auto; width: fit-content; min-width:150px;">
-                <img src="https://www.thispersondoesnotexist.com/image" style="width: 150px; margin:auto; border-radius: 100%;">
+                <img src="{{profile.photo_url}}" style="width: 150px; margin:auto; border-radius: 100%;">
             </div>
         </div>
     </div>
@@ -30,13 +30,13 @@
                             <p class="sec-card key">Specialization</p>
                             <p class="sec-card key">Deals</p>
                             <p class="sec-card key">Genomes</p>
-                            <p class="sec-card key last">Funded ammount</p>
+                            <p class="sec-card key last">Funded amount</p>
                         </div>
                         <div class="col s6">
-                            <p class="sec-card">HIV and Sars-Cov-2</p>
-                            <p class="sec-card">45</p>
-                            <p class="sec-card">13 of 2 viruses</p>
-                            <p class="sec-card last">150,000$</p>
+                            <p class="sec-card">{{profile.specialization}}</p>
+                            <p class="sec-card">{{profile.deals}}</p>
+                            <p class="sec-card">{{profile.genomes_amount}}</p>
+                            <p class="sec-card last">{{profile.funded_amount}}</p>
                         </div>
                     </div>
                 </mat-card>
@@ -84,5 +84,8 @@
     <div class="profile-section">
         <p class="profile-section-title">Researchers</p>
         <app-researchers-list></app-researchers-list>
+    </div>
+    <div class="profile-section centered">
+        <button mat-button class="modal-button green" (click)="openModal()">Edit profile</button>
     </div>
 </div>

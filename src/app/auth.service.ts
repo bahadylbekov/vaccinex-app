@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  baseURL = 'http://localhost:8000';
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
       domain: "vaccinex.us.auth0.com",
       client_id: "3Kzy0n7sGzccvpOJLgVKWP9qnpo0aGwu",
-      redirect_uri: `${window.location.origin}`
+      redirect_uri: `${window.location.origin}`,
+      audience: this.baseURL
     })
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
@@ -36,6 +38,12 @@ export class AuthService {
   userProfile$ = this.userProfileSubject$.asObservable();
   // Create a local property for login status
   loggedIn: boolean = null;
+
+  getTokenSilently$(options?): Observable<string> {
+    return this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) => from(client.getTokenSilently(options)))
+    );
+  }  
 
   constructor(private router: Router) {
     // On initial load, check authentication state with authorization server
@@ -62,6 +70,7 @@ export class AuthService {
         if (loggedIn) {
           // If authenticated, get user and set in app
           // NOTE: you could pass options here if needed
+          console.log('result')
           return this.getUser$();
         }
         // If not authenticated, return stream that emits 'false'
@@ -75,14 +84,16 @@ export class AuthService {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
-    this.auth0Client$.subscribe((client: Auth0Client) => {
+    this.auth0Client$.subscribe(async (client: Auth0Client) => {
       // Call method to log in
-      client.loginWithRedirect({
+      const result = client.loginWithRedirect({
         redirect_uri: `${window.location.origin}`,
-        appState: { target: redirectPath }
+        appState: { target: redirectPath },
+        responseType: 'token id_token',
       });
+      console.log(result)
     });
-  }
+  }  
 
   private handleAuthCallback() {
     // Call when app reloads after user logs in with Auth0

@@ -1,10 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Time } from '@angular/common';
+import { ApiService } from 'src/app/api.service';
 
 export interface Organization {
-  id: string;
-  name: string;
-  city: string;
-  country: string;
+  organizationID :number
+	name           :string
+	email          :string
+	photoUrl       :string
+	website        :string
+	country        :string
+	city           :string
+	decription     :string
+	specialization :string
+	deals          :string
+	genomesAmount  :string
+	fundedAmount   :string
+	isActive       :boolean
+	createdBy      :string
+	createdAt      :Time
+	updatedBy      :string
+  updatedAt      :Time
 }
 
 @Component({
@@ -14,14 +29,18 @@ export interface Organization {
 })
 export class OrganizationsComponent implements OnInit {
 
-  constructor() { }
-  organizations: Organization[] = [
-    {id: 'nusvdni0w1', name: 'Stanford Medical Research', city: 'San Francisco', country: 'USA'},
-    {id: 'nusvdni0w2', name: 'UC Berkeley Medical Institute', city: 'Berkeley', country: 'USA'},
-    {id: 'nusvdni0w3', name: 'Yale Health', city: 'New Haven', country: 'USA'},
-  ]
+  constructor(private api: ApiService) { }
+  organizations: Organization[] = []
 
   ngOnInit(): void {
+    this.loadOrganizations()
   }
 
+  loadOrganizations () {
+    this.api.getOrganizations$().subscribe(
+      res => {
+        this.organizations = res;
+      }
+    );
+  }
 }

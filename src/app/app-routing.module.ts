@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
@@ -7,6 +8,7 @@ import { VirusesComponent } from './viruses/viruses.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { GenomesComponent } from './genomes/genomes.component';
+import { InterceptorService } from './interceptor.service';
 
 const routes: Routes = [
   {
@@ -43,6 +45,13 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ]
 })
 export class AppRoutingModule { }

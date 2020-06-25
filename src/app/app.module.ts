@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { NavigationComponent } from './navigation/navigation.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent, CreateProfileModalComponent } from './profile/profile.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -39,8 +40,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NewVirusComponent, NewVirusModalComponent } from './new-virus/new-virus.component';
 import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-tezos-account/new-tezos-account.component';
-import { NewOrganizationComponent } from './new-organization/new-organization.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -48,6 +47,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
     AppComponent,
     NavigationComponent,
     ProfileComponent,
+    CreateProfileModalComponent,
     GenomeTableComponent,
     ResearchersListComponent,
     GenomeTableComponent,
@@ -62,12 +62,11 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
     NewVirusModalComponent,
     NewTezosAccountComponent,
     NewTezosAccountModalComponent,
-    NewOrganizationComponent,
-    SignInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
     LayoutModule,
