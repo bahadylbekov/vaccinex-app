@@ -101,13 +101,10 @@ export class NewGenomeModalComponent {
   }
 
   async createNewGenome(organization: string): Promise<any> {
-    // this.genome.organization_name = ''
     this.genome.is_active = true;
     this.genome.is_sold = false;
     this.genome.simularity_rate = '98%'
     this.genome.file_url = this.file_url
-    console.log(this.genome)
-    await this.newToken();
   }
 
   randomInteger(min, max): number{
@@ -115,42 +112,6 @@ export class NewGenomeModalComponent {
     return Math.round(rand);
   }
 
-  public async createTokenUsingContract(auction: any, creatureId: any, isNew: any, owner: any, price: any, tokenURI: any) {
-    
-    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
-    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
-      .then(contract => {
-        return contract.methods.build(auction, creatureId, isNew, owner, price, tokenURI).send();
-      })
-      .then(op => {
-        console.log(`Waiting for ${op.hash} to be confirmed...`);
-        return op.confirmation(1).then(() => op.hash);
-      })
-      .then(async hash => {
-        await console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`)
-        await this.api.createGenome$(this.genome).subscribe(
-          res => {
-            console.log(res)
-            window.location.reload();
-          }
-        );    
-      })
-      .catch(error => console.log(error));
-  }
-
-  async newToken() {
-    const tokenId = this.randomInteger(0, 10000)
-    var params = {
-        auction: 1593112528,
-        creatureId: tokenId,
-        isNew: true,
-        owner: ls.get('publicKeyHash'),
-        price: this.genome.price,
-        tokenURI: this.genome.file_url,  
-    }
-    console.log(params)
-    this.createTokenUsingContract(params.auction, params.creatureId, params.isNew, params.owner, params.price, params.tokenURI)
-  }
 
   onChangeVirus(data: any): void {
     this.genome.virus_name = data.value.value
