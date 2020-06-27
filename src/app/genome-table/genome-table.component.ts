@@ -12,6 +12,7 @@ import { Tezos, TezosToolkit } from '@taquito/taquito';
 import { InMemorySigner } from '@taquito/signer';
 import { Router } from '@angular/router';
 import * as ls from "local-storage";
+import { GenomeTableDataSource } from './genome-table-datasource';
 
 export interface GenomeTableItem {
   genome_id: number;
@@ -36,16 +37,15 @@ export interface GenomeTableItem {
 export class GenomeTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  dataSource: GenomeTableDataSource;
 
   constructor(
     private api: ApiService,
     private router: Router,
     public auth: AuthService,
   ) { }
-  
-  dataSource: MatTableDataSource<GenomeTableItem>;
   // status: string = 'All';
-  genomes: GenomeTableItem[];
+  genomes: GenomeTableItem[] = []
   genomeList = new Array;
   created_by: string;
 
@@ -53,139 +53,46 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
   displayedColumns = ['genome_name', 'organization_name', 'virus_name', 'price', 'simularity_rate', 'origin', 'action'];
 
   async ngOnInit() {
+    await this.loadUserID()
+    await this.loadGenomes()
+  }
+
+  ngAfterViewInit() {}
+
+  loadGenomes() {
     if (this.router.url === '/genomes') {
-      await this.loadAllGenomes()
-      await this.loadUserID()
+      this.api.getGenomes$().subscribe(res => { 
+          this.createTable(res)
+      });
     } else if (this.router.url === '/profile') {
-      await this.loadMyGenomes()
-      await this.loadUserID()
+      this.api.getMyGenomes$().subscribe(res => { 
+        this.createTable(res)
+      });  
     } else if (this.router.url.split('/').slice()[1] === 'viruses') {
       const id = this.router.url.split('/').slice(-1).pop()
-      await this.loadGenomesForVirus(id)
-      await this.loadUserID()
+      this.api.getGenomesByVirus$(id).subscribe(res => {
+        this.createTable(res)
+      });
     } else if (this.router.url.split('/').slice()[1] === 'organizations') {
       const id = this.router.url.split('/').slice(-1).pop()
-      await this.loadGenomesForOrganization(id)
-      await this.loadUserID()
+      this.api.getGenomesByOrganization$(id).subscribe(res => {
+        this.createTable(res)
+      });
     }
   }
 
-  ngAfterViewInit() {
-    
+  createTable(data: any) {
+    data != null ? this.dataSource = new GenomeTableDataSource(data, this.paginator, this.sort) : this.loadEmptyTable()
   }
 
-  public async buyTokenHandler(creatureId: number, price: number) {
-    
-    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
-    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
-      .then(contract => {
-        return contract.methods.buy(creatureId, price).send();
-      })
-      .then(op => {
-        console.log(`Waiting for ${op.hash} to be confirmed...`);
-        return op.confirmation(1).then(() => op.hash);
-      })
-      .then(async hash => {
-        await console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`)
-      })
-      .catch(error => console.log(error));
-  }
-
-  public async sellTokenHandler(creatureId: number, price: number) {
-    
-    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: await InMemorySigner.fromSecretKey(ls.get('secretKey')) });
-    return Tezos.contract.at('KT1ErwjDBhhYnq6w5Qky9kVewvMye1HsP9z5')
-      .then(contract => {
-        return contract.methods.sell(creatureId, price).send();
-      })
-      .then(op => {
-        console.log(`Waiting for ${op.hash} to be confirmed...`);
-        return op.confirmation(1).then(() => op.hash);
-      })
-      .then(async hash => {
-        await console.log(`Operation injected: https://carthagenet.tzstats.com/${hash}`)
-      })
-      .catch(error => console.log(error));
+  loadEmptyTable() {
+    this.dataSource = new GenomeTableDataSource(this.genomes, this.paginator, this.sort)
   }
 
   loadUserID() {
-    this.api.getMyProfile$().subscribe(
-      res => {
-        if (res != null) {
-          if (res[0] != null) {
+    this.api.getMyProfile$().subscribe(res => {
+        if (res != null && res[0] != null) {
             this.created_by = res[0].created_by
-          }
-        }
-      }
-    );
-  }
-
-
-  async buyToken(id: number, price: number) {
-    var params = {
-        creatureId: id,
-        price: price,
-    }
-    this.buyTokenHandler(params.creatureId, params.price)
-  }
-
-  async sellToken(id: number, price: number) {
-    var params = {
-      creatureId: id,
-      price: price,
-    }
-    this.sellTokenHandler(params.creatureId, params.price)
-  }
-
-  loadAllGenomes () {
-    this.api.getGenomes$().subscribe(
-      res => {
-        this.genomes = res;
-        if (res != null) {
-          console.log(this.genomes)
-          this.dataSource = new MatTableDataSource(this.genomes);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;    
-        }
-      }
-    );
-  }
-
-  loadMyGenomes() {
-    this.api.getMyGenomes$().subscribe(
-      res => {
-        if (res != null) {
-          console.log(this.genomes)
-          this.dataSource = new MatTableDataSource(this.genomes);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;    
-        }
-      }
-    );
-  }
-
-  loadGenomesForVirus(id: string) {
-    console.log('getting for virus')
-    this.api.getGenomesByVirus$(id).subscribe(
-      res => {
-        if (res != null) {
-          console.log(this.genomes)
-          this.dataSource = new MatTableDataSource(this.genomes);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;    
-        }
-      }
-    );
-  }
-
-  loadGenomesForOrganization(id: string) {
-    this.api.getGenomesByOrganization$(id).subscribe(
-      res => {
-        if (res != null) {
-          console.log(this.genomes)
-          this.dataSource = new MatTableDataSource(this.genomes);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;    
         }
       }
     );
