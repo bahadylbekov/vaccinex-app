@@ -95,24 +95,12 @@ export class NewTezosAccountModalComponent {
     );
   }
 
-  async generateKeys() {
-
-  }
-
   ngOnInit() {
     this.loadOrgID()
   }
 
   loadOrgID() {
-    this.api.getMyProfile$().subscribe(
-      res => {
-        if (res != null) {
-          if (res[0] != null) {
-            this.organization_id = res[0].organization_id
-          }
-        }
-      }
-    );
+    this.api.getMyProfile$().subscribe(res => res != null && res[0] != null ? this.organization_id = res[0].organization_id : '');
   }
 
 }

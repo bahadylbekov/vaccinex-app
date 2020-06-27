@@ -12,22 +12,7 @@ import { Tezos, TezosToolkit } from '@taquito/taquito';
 import { InMemorySigner } from '@taquito/signer';
 import { Router } from '@angular/router';
 import * as ls from "local-storage";
-import { GenomeTableDataSource } from './genome-table-datasource';
-
-export interface GenomeTableItem {
-  genome_id: number;
-  genome_name: string;
-  organization_name: string;
-  file_url: string;
-  virus_name: string;
-  simularity_rate: string;
-  origin: string;
-  status: string;
-  is_active         :boolean 
-  is_sold           :boolean
-  created_by        :string
-  created_at        :Time
-}
+import { GenomeTableDataSource, GenomeTableItem } from './genome-table-datasource';
 
 @Component({
   selector: 'app-genome-table',
@@ -44,9 +29,7 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
     private router: Router,
     public auth: AuthService,
   ) { }
-  // status: string = 'All';
-  genomes: GenomeTableItem[] = []
-  genomeList = new Array;
+  empty_genomes: GenomeTableItem[] = []
   created_by: string;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -81,20 +64,15 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
     }
   }
 
-  createTable(data: any) {
-    data != null ? this.dataSource = new GenomeTableDataSource(data, this.paginator, this.sort) : this.loadEmptyTable()
+  createTable(genomes: any) {
+    genomes != null ? this.dataSource = new GenomeTableDataSource(genomes, this.paginator, this.sort) : this.loadEmptyTable()
   }
 
   loadEmptyTable() {
-    this.dataSource = new GenomeTableDataSource(this.genomes, this.paginator, this.sort)
+    this.dataSource = new GenomeTableDataSource(this.empty_genomes, this.paginator, this.sort)
   }
 
   loadUserID() {
-    this.api.getMyProfile$().subscribe(res => {
-        if (res != null && res[0] != null) {
-            this.created_by = res[0].created_by
-        }
-      }
-    );
+    this.api.getMyProfile$().subscribe(res => res != null && res[0] != null ? this.created_by = res[0].created_by : '');
   }
 }

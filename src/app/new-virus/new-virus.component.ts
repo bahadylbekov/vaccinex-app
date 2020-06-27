@@ -75,13 +75,7 @@ export class NewVirusModalComponent {
     this.virus.photo_url = 'https://duckduckgo.com/i/60f0472f.png'
     this.virus.is_active = true
     this.virus.is_vaccine = false
-    console.log(this.virus)
-    await this.api.createVirus$(this.virus).subscribe(
-      res => {
-        console.log(res)
-        window.location.reload();
-      }
-    );
+    await this.api.createVirus$(this.virus).subscribe(res => window.location.reload(), error => console.log(error));
   }
 
   onChangeSpread(data: any): void {

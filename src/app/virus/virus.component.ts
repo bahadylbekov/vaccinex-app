@@ -10,7 +10,7 @@ import { Virus } from 'src/models';
   styleUrls: ['./virus.component.scss']
 })
 export class VirusComponent implements OnInit {
-  virus = new Virus
+  virus: Virus
 
   constructor(public auth: AuthService, private api: ApiService, private router: Router) { }
 
@@ -20,12 +20,7 @@ export class VirusComponent implements OnInit {
 
   loadVirus() {
     const id = this.router.url.split('/').slice(-1).pop()
-    this.api.getVirusByID$(id).subscribe(
-      res => {
-        let newVirus = new Virus;
-        newVirus = res
-        this.virus = newVirus
-      }, error => console.log(error))
+    this.api.getVirusByID$(id).subscribe(res => res != null ? this.virus = res : null, error => console.log(error))
   }
 
 }

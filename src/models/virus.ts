@@ -15,4 +15,4 @@ export class Virus {
 	updated_by    :string
 	updated_at    :Time
 
-}
+}  

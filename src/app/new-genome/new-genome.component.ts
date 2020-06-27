@@ -5,9 +5,6 @@ import { FileValidator } from 'ngx-material-file-input';
 import { Genome } from 'src/models';
 import * as IPFS from 'ipfs-mini' 
 import { ApiService } from '../api.service';
-import { TezosWalletService } from 'src/services/tezos-wallet.service';
-import { Tezos, TezosToolkit } from '@taquito/taquito';
-import { InMemorySigner } from '@taquito/signer';
 import * as ls from "local-storage";
 
 
@@ -56,7 +53,6 @@ export class NewGenomeModalComponent {
   async UploadToIpfs(data: any): Promise<any> {
     await this.ipfs.add(data)
       .then(result => {
-        console.log(result)
         this.file_url = 'https://ipfs.infura.io/ipfs/' + result
         return result
       })
@@ -81,7 +77,6 @@ export class NewGenomeModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public api: ApiService,
     private _fb: FormBuilder,
-    public tezos: TezosWalletService,
   ) {}
 
   onNoClick(): void {

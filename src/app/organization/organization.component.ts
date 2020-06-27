@@ -22,20 +22,12 @@ export class OrganizationComponent implements OnInit {
 
   loadOrganization() {
     const id = this.router.url.split('/').slice(-1).pop()
-    this.api.getOrganizationByID$(id).subscribe(
-      res => {
-        this.organization = res
-      }, error => console.log(error))
+    this.api.getOrganizationByID$(id).subscribe(res => res != null ? this.organization = res : null, error => console.log(error))
   }
 
   loadOrganizationTezosAccounts() {
     const id = this.router.url.split('/').slice(-1).pop()
-    this.api.getOrganizationTezosAccounts$(id).subscribe(
-      res => {
-        console.log(res)
-        this.tezosAccount = res[0]
-      }
-    );
+    this.api.getOrganizationTezosAccounts$(id).subscribe(res => res != null && res[0] != null ? this.tezosAccount = res[0] : null, error => console.log(error));
   }
 
 }

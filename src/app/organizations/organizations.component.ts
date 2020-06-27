@@ -38,10 +38,6 @@ export class OrganizationsComponent implements OnInit {
   }
 
   loadOrganizations () {
-    this.api.getOrganizations$().subscribe(
-      res => {
-        this.organizations = res;
-      }
-    );
+    this.api.getOrganizations$().subscribe(res => this.organizations = res);
   }
 }

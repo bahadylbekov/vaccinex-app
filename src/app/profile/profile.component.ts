@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ApiService } from 'src/app/api.service';
-import { Tezos, TezosToolkit } from '@taquito/taquito';
 import { Profile, TezosAccount } from '../../models';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -42,39 +41,15 @@ export class ProfileComponent implements OnInit {
   loadProfile() {
       this.api.getMyProfile$().subscribe(
         async res => {
-          if (res != null) {
-            if (res[0] != null) {
-              console.log(res[0])
+          if (res != null && res[0] != null) {
               this.profile = await res[0]
               await this.loadTezosAccounts()
-              await this.getMyBalance()          
-            }
           }
           else {
             this.openModal()
           }
         }
       );
-  }
-
-  createSmartContract() {
-    this.tezos.originateContract()
-  }
-
-  async getMyBalance (): Promise<any> {
-    const publicKeyHash = ls.get('publicKeyHash')
-    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
-    Tezos.tz
-      .getBalance(publicKeyHash.toString())
-      .then(balance => {
-        const result = balance.toNumber() / 1000000
-        this.tezosAccount.balance = result
-        return
-      })
-      .catch(error => {
-        console.log(JSON.stringify(error))
-        return
-      });
   }
 
   loadTezosAccounts() {
@@ -115,13 +90,7 @@ export class CreateProfileModalComponent {
     this.new_profile.genomes_amount = await '1'
     this.new_profile.funded_amount = await '0 $'
     this.new_profile.is_active = true
-    console.log(this.new_profile)
-    await this.api.createProfile$(this.new_profile).subscribe(
-      res => {
-        console.log(res)
-        window.location.reload();
-      }
-    );
+    await this.api.createProfile$(this.new_profile).subscribe(res => window.location.reload());
   }
 
   ngOnInit() {

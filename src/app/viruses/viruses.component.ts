@@ -2,22 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Time } from '@angular/common';
 import { ApiService } from '../api.service';
+import { Virus } from 'src/models';
 
-export interface Virus {
-  id: string;
-  name: string;
-  description  :string;
-  photoUrl     :string;
-  family: string;
-  fatalityRate :string
-	spread       :string
-	isActive     :boolean
-	isVaccine    :boolean
-	createdBy    :string
-	createdAt    :Time
-	updatedBy    :string
-	updatedAt    :Time
-}
 
 @Component({
   selector: 'app-viruses',
@@ -36,11 +22,7 @@ export class VirusesComponent implements OnInit {
   }
 
   loadViruses () {
-    this.api.getViruses$().subscribe(
-      res => {
-        this.viruses = res;
-      }
-    );
+    this.api.getViruses$().subscribe(res => res != null ? this.viruses = res : null, error => console.log(error));
   }
 
 }

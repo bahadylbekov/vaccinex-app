@@ -20,10 +20,6 @@ export interface GenomeTableItem {
     created_at        :Time
   }
   
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: GenomeTableItem[] = [];
-
 export class GenomeTableDataSource extends DataSource<GenomeTableItem> {
 
   constructor(private genomes: GenomeTableItem[],private paginator: MatPaginator, private sort: MatSort) {
@@ -46,17 +42,17 @@ export class GenomeTableDataSource extends DataSource<GenomeTableItem> {
 
   disconnect() {}
 
-  private getPagedData(data: GenomeTableItem[]) {
+  private getPagedData(genomes: GenomeTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    return data.splice(startIndex, this.paginator.pageSize);
+    return genomes.splice(startIndex, this.paginator.pageSize);
   }
 
-  private getSortedData(data: GenomeTableItem[]) {
+  private getSortedData(genomes: GenomeTableItem[]) {
     if (!this.sort.active || this.sort.direction === '') {
-      return data;
+      return genomes;
     }
 
-    return data.sort((a, b) => {
+    return genomes.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'genome_name': return compare(a.genome_name, b.genome_name, isAsc);
