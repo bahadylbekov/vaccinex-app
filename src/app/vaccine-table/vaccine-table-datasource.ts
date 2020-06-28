@@ -3,37 +3,36 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Time } from '@angular/common';
-import { Genome } from 'src/models';
-  
-export class GenomeTableDataSource extends DataSource<Genome> {
+import { Vaccine } from 'src/models';
 
-  constructor(private genomes: Genome[],private paginator: MatPaginator, private sort: MatSort) {
+export class VaccineTableDataSource extends DataSource<Vaccine> {
+
+  constructor(private vaccines: Vaccine[],private paginator: MatPaginator, private sort: MatSort) {
     super();
   }
 
-  connect(): Observable<Genome[]> {
+  connect(): Observable<Vaccine[]> {
     const dataMutations = [
-      observableOf(this.genomes),
+      observableOf(this.vaccines),
       this.paginator.page,
       this.sort.sortChange
     ];
 
-    this.paginator.length = this.genomes.length;
+    this.paginator.length = this.vaccines.length;
 
     return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.genomes]));
+      return this.getPagedData(this.getSortedData([...this.vaccines]));
     }));
   }
 
   disconnect() {}
 
-  private getPagedData(genomes: Genome[]) {
+  private getPagedData(genomes: Vaccine[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return genomes.splice(startIndex, this.paginator.pageSize);
   }
 
-  private getSortedData(genomes: Genome[]) {
+  private getSortedData(genomes: Vaccine[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return genomes;
     }
@@ -41,11 +40,10 @@ export class GenomeTableDataSource extends DataSource<Genome> {
     return genomes.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'genome_name': return compare(a.genome_name, b.genome_name, isAsc);
-        case 'organization_name': return compare(+a.organization_name, +b.organization_name, isAsc);
-        case 'virus_name': return compare(a.virus_name, b.virus_name, isAsc);
         case 'vaccine_name': return compare(a.vaccine_name, b.vaccine_name, isAsc);
-        case 'simularity_rate': return compare(a.simularity_rate, b.simularity_rate, isAsc);
+        case 'virus_name': return compare(+a.virus_name, +b.virus_name, isAsc);
+        case 'requested_amount': return compare(a.requested_amount, b.requested_amount, isAsc);
+        case 'funded_amount': return compare(a.funded_amount, b.funded_amount, isAsc);
         default: return 0;
       }
     });

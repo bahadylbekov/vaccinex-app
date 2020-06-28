@@ -9,6 +9,8 @@ import { OrganizationComponent } from './organization/organization.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { GenomesComponent } from './genomes/genomes.component';
 import { InterceptorService } from './interceptor.service';
+import { VaccineComponent } from './vaccine/vaccine.component';
+import { VaccinesComponent } from './vaccines/vaccines.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,16 @@ const routes: Routes = [
   {
     path: 'genomes',
     component: GenomesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'vaccines/:id',
+    component: VaccineComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'vaccines',
+    component: VaccinesComponent,
     canActivate: [AuthGuard],
   },
 ];

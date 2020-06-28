@@ -1,42 +1,37 @@
 <div class="content">
-    <div class="virus-row">
-        <div class="col s12 m4 l2 virus-logo">
-            <div style="margin: auto; width: fit-content; min-width:150px;">
-                <img src="{{virus.photo_url}}" style="width: 150px; margin:auto; border-radius: 100%;">
-            </div>
-        </div>
-        <div class="col s12 m4 l6 virus-information main">
-            <p class="virus-information-text title">
-                {{virus.virus_name}}
+    <div class="vaccine-row">
+        <div class="col s12 m4 l6 vaccine-information main">
+            <p class="vaccine-information-text title">
+                {{vaccine.vaccine_name}}
             </p>
-            <p class="virus-information-text description">
-                {{virus.description}}
+            <p class="vaccine-information-text description">
+                {{vaccine.description}}
             </p>
         </div>
     </div>
-    <div class="virus-information">
+    <div class="vaccine-information">
         <div class="row">
             <div class="col s12 m4 l4 xl4">
-                <p class="virus-section-title">Information</p>
-                <mat-card class="virus-section-information">
+                <p class="vaccine-section-title">Information</p>
+                <mat-card class="vaccine-section-information">
                     <div class="row">
                         <div class="col s6" style="color: #42505C;">
-                            <p class="sec-card key">Family</p>
-                            <p class="sec-card key">Fatality Rate</p>
-                            <p class="sec-card key last">Spread</p>
+                            <p class="sec-card key">Virus</p>
+                            <p class="sec-card key">Requested Amount</p>
+                            <p class="sec-card key last">Funded Amount</p>
                         </div>
                         <div class="col s6">
-                            <p class="sec-card">{{virus.family}}</p>
-                            <p class="sec-card">{{virus.fatality_rate}}</p>
-                            <p class="sec-card last">{{virus.spread}}</p>
+                            <p class="sec-card">{{vaccine.virus_name}}</p>
+                            <p class="sec-card">{{vaccine.requested_amount}}</p>
+                            <p class="sec-card last">{{vaccine.funded_amount}}</p>
                         </div>
                     </div>
                 </mat-card>
             </div>
             <div class="col s12 m8 l8 xl8">
-                <p class="virus-section-title">Activity</p>
-                <mat-card class="virus-section-information">
-                    <div class="virus-activity-container">
+                <p class="vaccine-section-title">Activity</p>
+                <mat-card class="vaccine-section-information">
+                    <div class="vaccine-activity-container">
                         <div class="activity-item">
                             <div class="activity-image">
                                 <img src="assets/img/sample.png">
@@ -69,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="virus-section">
-        <app-vaccine-table></app-vaccine-table>
+    <div class="vaccine-section">
+        <app-genome-table></app-genome-table>
     </div>
 </div>

@@ -40,11 +40,15 @@ export class ApiService {
   }
 
   getGenomesByVirus$(id: string): Observable<any> {
-    return this.http.get(this.baseURL + '/genomes/' + id);
+    return this.http.get(this.baseURL + '/genomes/virus/' + id);
   }
 
   getGenomesByOrganization$(id: string): Observable<any> {
     return this.http.get(this.baseURL + '/genomes/organization/' + id);
+  }
+
+  getGenomesByVaccine$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/genomes/vaccines/' + id);
   }
 
   // NUCYPHER-ACCOUNTS SECTION METHODS
@@ -105,7 +109,7 @@ export class ApiService {
     return this.http.get(this.baseURL +  '/vaccines');
   }
 
-  getVaccineByID$(id: string): Observable<any> {
+  getVaccineByVirus$(id: string): Observable<any> {
     return this.http.get(this.baseURL +  '/vaccines/' + id);
   }
 

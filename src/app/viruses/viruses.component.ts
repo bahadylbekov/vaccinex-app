@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
-import { Time } from '@angular/common';
 import { ApiService } from '../api.service';
 import { Virus } from 'src/models';
 

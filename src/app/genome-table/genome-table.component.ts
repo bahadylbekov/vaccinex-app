@@ -1,18 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import {MatTableDataSource} from '@angular/material/table';
 import { Genome } from 'src/models';
 import { ApiService } from '../api.service';
-import { Time } from '@angular/common';
 import { AuthService } from '../auth.service';
-import { TezosWalletService } from 'src/services/tezos-wallet.service';
-import { Tezos, TezosToolkit } from '@taquito/taquito';
-import { InMemorySigner } from '@taquito/signer';
 import { Router } from '@angular/router';
-import * as ls from "local-storage";
-import { GenomeTableDataSource, GenomeTableItem } from './genome-table-datasource';
+import { GenomeTableDataSource } from './genome-table-datasource';
 
 @Component({
   selector: 'app-genome-table',
@@ -29,7 +22,7 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
     private router: Router,
     public auth: AuthService,
   ) { }
-  empty_genomes: GenomeTableItem[] = []
+  empty_genomes: Genome[] = []
   created_by: string;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -51,9 +44,9 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
       this.api.getMyGenomes$().subscribe(res => { 
         this.createTable(res)
       });  
-    } else if (this.router.url.split('/').slice()[1] === 'viruses') {
+    } else if (this.router.url.split('/').slice()[1] === 'vaccines') {
       const id = this.router.url.split('/').slice(-1).pop()
-      this.api.getGenomesByVirus$(id).subscribe(res => {
+      this.api.getGenomesByVaccine$(id).subscribe(res => {
         this.createTable(res)
       });
     } else if (this.router.url.split('/').slice()[1] === 'organizations') {
