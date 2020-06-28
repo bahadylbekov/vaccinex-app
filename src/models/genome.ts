@@ -14,6 +14,4 @@ export class Genome {
 	is_sold           :boolean
 	created_by        :string
 	created_at        :Time
-	updated_by        :string
-	updated_at        :Time
 }

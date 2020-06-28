@@ -1,21 +1,20 @@
-import { TezosFaucetKey, TezosAccount, TezosMemorySigner, TezosNetwork, TezosWallet } from './tezos-walet.model';
-import { NuCypherAlice, NuCypherBob, NuCypherEnrico } from './nucypher-wallet.model';
+import { NuCypherAlice, NuCypherBob, NuCypherEnrico, NucypherAccount } from './nucypher-wallet.model';
+import { EthereumAccount } from './ethereum-wallet.model';
 import { Profile } from './profile';
 import { Genome } from './genome';
 import { Organization } from './organization';
 import { Virus } from './virus';
+import { Vaccine } from './vaccine';
 
 export { 
-    TezosFaucetKey, 
-    TezosMemorySigner, 
-    TezosNetwork, 
-    TezosWallet,
     NuCypherAlice, 
     NuCypherBob, 
     NuCypherEnrico,
+    NucypherAccount,
+    EthereumAccount,
     Profile,
     Organization,
     Genome,
-    TezosAccount,
     Virus,
+    Vaccine,
 }

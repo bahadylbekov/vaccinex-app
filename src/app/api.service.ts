@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profile, Genome, TezosAccount, Organization, Virus } from '../models';
+import { Profile, Genome, Virus, Vaccine, NucypherAccount, EthereumAccount } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,6 @@ export class ApiService {
   }
 
   createProfile$(data: Profile): Observable<any> {
-    console.log('send new profile')
-    console.log(data)
     return this.http.post(this.baseURL + '/profile', data);
   }
 
@@ -46,22 +44,36 @@ export class ApiService {
   }
 
   getGenomesByOrganization$(id: string): Observable<any> {
-    return this.http.get(this.baseURL + '/organization-genome/' + id);
+    return this.http.get(this.baseURL + '/genomes/organization/' + id);
   }
 
-  // TEZOS-ACCOUNT SECTION METHODS
+  // NUCYPHER-ACCOUNTS SECTION METHODS
 
-  getMyTezosAccounts$(): Observable<any> {
-    return this.http.get(this.baseURL + '/tezos/accounts');
+  getMyNucypherAccounts$(): Observable<any> {
+    return this.http.get(this.baseURL + '/accounts/nucypher');
   }
 
-  getOrganizationTezosAccounts$(id: string): Observable<any> {
-    return this.http.get(this.baseURL + '/tezos/organization/accounts/' + id);
+  getOrganizationNucypherAccounts$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/organization/accounts/nucypher/' + id);
   }
 
-  createTezosAccount$(data: TezosAccount): Observable<any> {
-    return this.http.post(this.baseURL + '/tezos/accounts', data);
+  createNucypherAccount$(data: NucypherAccount): Observable<any> {
+    return this.http.post(this.baseURL + '/accounts/nucypher', data);
   }
+
+  // ETHEREUM-ACCOUNTS SECTION METHODS
+
+  getMyEthereumAccounts$(): Observable<any> {
+    return this.http.get(this.baseURL + '/accounts/ethereum');
+  }
+
+  getOrganizationEthereumAccounts$(id: string): Observable<any> {
+    return this.http.get(this.baseURL + '/organization/accounts/ethereum/' + id);
+  }
+
+  createEthereumAccount$(data: EthereumAccount): Observable<any> {
+    return this.http.post(this.baseURL + '/accounts/ethereum', data);
+  }  
 
   // ORGANIZATIONS SECTION METHODS
 
@@ -71,10 +83,6 @@ export class ApiService {
 
   getOrganizationByID$(id: string): Observable<any> {
     return this.http.get(this.baseURL + '/organizations/' + id);
-  }
-
-  createOrganization$(data: Organization): Observable<any> {
-    return this.http.post(this.baseURL + '/organizations', data);
   }
 
   // VIRUS SECTION METHODS
@@ -91,4 +99,17 @@ export class ApiService {
     return this.http.get(this.baseURL + '/viruses/' + id);
   }
 
+  // VACCINES SECTION METHODS
+
+  getVaccines$(): Observable<any> {
+    return this.http.get(this.baseURL +  '/vaccines');
+  }
+
+  getVaccineByID$(id: string): Observable<any> {
+    return this.http.get(this.baseURL +  '/vaccines/' + id);
+  }
+
+  createVaccine(data: Vaccine): Observable<any> {
+    return this.http.post(this.baseURL + '/vaccines', data);
+  }
 }

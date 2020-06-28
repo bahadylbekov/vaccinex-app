@@ -12,7 +12,4 @@ export class Virus {
 	is_vaccine    :boolean
 	created_by    :string
 	created_at    :Time
-	updated_by    :string
-	updated_at    :Time
-
 }  

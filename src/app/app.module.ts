@@ -41,6 +41,7 @@ import { NewVirusComponent, NewVirusModalComponent } from './new-virus/new-virus
 import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-tezos-account/new-tezos-account.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { VaccinesComponent } from './vaccines/vaccines.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NewVirusModalComponent,
     NewTezosAccountComponent,
     NewTezosAccountModalComponent,
+    VaccinesComponent,
   ],
   imports: [
     BrowserModule,
