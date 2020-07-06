@@ -8,6 +8,7 @@ VaccineX is a distributed marketplace for genome data used in vaccine developmen
 
 ## Project presentation
 You could found a project presentation [here](https://drive.google.com/file/d/1e9SeVeltAzGXgycJx-RmXVoIQvskY6PE/view?usp=sharing)
+Please check out [video presentation and quick project demo](https://www.youtube.com/watch?v=OD7qVY-5-T8)
 
 ## Requirements
 
