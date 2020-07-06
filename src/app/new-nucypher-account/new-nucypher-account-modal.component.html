@@ -19,6 +19,9 @@
                 required>
         </mat-form-field>
       </div>
+      <div class="modal-content-item file-line" *ngIf="acccount_loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>  
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Close</button>

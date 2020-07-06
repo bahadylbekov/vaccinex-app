@@ -54,6 +54,14 @@
   margin-top: 3px;
 }
 
+.nucypher-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .section-researchers-list .Card .actions-button {
   padding: 11px 33px;
   background: #51C08A;

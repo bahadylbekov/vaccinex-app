@@ -29,10 +29,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let row">
-            <button *ngIf="row.created_by != created_by" mat-button class="action-button green" (click)="requestGrant(row)">
+            <button *ngIf="row.created_by != created_by" [disabled]="nucypher_processing" mat-button class="action-button green" (click)="requestGrant(row)">
               Buy
             </button>
-            <button *ngIf="row.created_by === created_by" mat-button class="action-button" (click)="requestGrant(row)">
+            <button *ngIf="row.created_by === created_by" [disabled]="nucypher_processing" mat-button class="action-button" (click)="requestGrant(row)">
               Sell
             </button>
           </td>

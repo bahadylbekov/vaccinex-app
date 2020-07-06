@@ -51,6 +51,7 @@ export class NewNucypherAccountModalComponent implements OnInit {
   character_username = new AccountUsername;
   nucypher_account = new NucypherAccount;
   organization_id: number;
+  acccount_loading: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<NewNucypherAccountModalComponent>,
@@ -68,6 +69,7 @@ export class NewNucypherAccountModalComponent implements OnInit {
   }
 
   async createNewAccount(): Promise<any> {
+    this.acccount_loading = await true;
     await this.api.createNucypherAlice$(this.character).subscribe(async (res) => {
       this.nucypher_account.address = await res.address
       this.character_username.username = await this.character.username;
@@ -83,6 +85,7 @@ export class NewNucypherAccountModalComponent implements OnInit {
         this.nucypher_account.tokens = await 0
         await console.log(this.nucypher_account)
         await this.api.createNucypherAccount$(this.nucypher_account).subscribe((res) => console.log(res), error => console.log(error))    
+        this.acccount_loading = await false;
       });
     }, error => console.log(error));
   }

@@ -27,6 +27,7 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
   ) { }
   empty_genomes: Genome[] = []
   created_by: string;
+  nucypher_processing = false;
   requested_grant = new RequestedGrant;
   nucypher_account = new NucypherAccount;
 
@@ -93,6 +94,7 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
   }
 
   async requestGrant(row: Genome) {
+    this.nucypher_processing = await true;
     this.requested_grant.token_id = await row.token_id
     this.requested_grant.alice_ethereum_account = await row.ethereum_address
     this.requested_grant.alice_nucypher_account_name = await row.nucypher_account
@@ -107,7 +109,8 @@ export class GenomeTableComponent implements AfterViewInit, OnInit {
     this.requested_grant.bob_ethereum_account = await this.ethereum_account
     await console.log(this.requested_grant)
     await this.api.createRequestedGrant$(this.requested_grant).subscribe((res) => {
-      // window.location.reload()
+      window.location.reload()
+      this.nucypher_processing = false;
       console.log(res)
     }, err => console.log(err))
   }

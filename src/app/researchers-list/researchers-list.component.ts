@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { RequestedGrant, NucypherAccount, Grant, Policy, Receipt, DecryptionRequest } from 'src/models';
 const Web3 = require('web3');
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../../assets/contract.js';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-researchers-list',
@@ -13,7 +14,7 @@ import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../../assets/contract.js';
 
 export class ResearchersListComponent implements OnInit {
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private http: HttpClient) { }
   nucypher_account = new NucypherAccount
   alice_account: string;
   grant_request = new Grant;
@@ -22,6 +23,7 @@ export class ResearchersListComponent implements OnInit {
   ethereum_account: string;
   is_password_opened = false;
   grant_locked = false;
+  decrypt_locked = false;
   submition_request = new SubmitionRequest;
   decrypting_request = new DecryptionRequest
   web3 = new Web3(Web3.givenProvider)
@@ -137,21 +139,40 @@ export class ResearchersListComponent implements OnInit {
   }
 
   async decryptData(grant: RequestedGrant) {
+    this.decrypt_locked = await true
     await this.getPolicy(grant.policy_id) 
     await this.getReceipt(grant.receipt_id)
     await this.safeTransfer(grant.alice_ethereum_account, this.ethereum_account, grant.token_id)
-    await this.downloadAndDecryptData(this.decrypting_request)
+    await this.downloadAndDecrypt(this.decrypting_request)
+    this.decrypt_locked = await false
   }
 
-  async downloadAndDecryptData(data: DecryptionRequest) {
+  isObject(obj) {
+    return obj !== undefined && obj !== null && obj.constructor == Object;
+  }
+
+  async downloadAndDecrypt(data: DecryptionRequest) {
     data.username = await this.nucypher_account.name;
-    await console.log(data)
-    await this.api.decryptData$(data).subscribe(async (res) => {
-      if (res != null) {
-        await console.log(res)
-        let data = JSON.stringify(res)
-        await this.downloadFile(data, "application/json")
-    }})
+    let label = await this.decrypting_request.policy_info.label
+    let parsed_label = await label.split('.')
+    let format = parsed_label[parsed_label.length - 1]
+    fetch('http://localhost:5000/decrypt', {
+        body: JSON.stringify(data),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+    })
+    .then(response => response.blob())
+    .then(response => {
+        const blob = new Blob([response], {type: response.type});
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download = "file."+format;
+        document.body.appendChild(a);
+        a.click();
+    })
   }
 
   async safeTransfer(address_from: string, address_to: string, token_id: number) {
@@ -172,7 +193,7 @@ export class ResearchersListComponent implements OnInit {
   }
 
   downloadFile(data: any, type: string) {
-    let blob = new Blob([data], { type: type});
+    let blob = new Blob([data], { type: type });
     let url = window.URL || window.webkitURL;
     let blob_uri = url.createObjectURL(blob)
     let pwa = window.open(blob_uri);

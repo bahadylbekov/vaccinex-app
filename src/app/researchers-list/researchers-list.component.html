@@ -17,7 +17,7 @@
                                 <button mat-button class="action-button" (click)="openPassword()">
                                     Try to grant
                                 </button>
-                                <div *ngIf="is_password_opened">
+                                <div *ngIf="is_password_opened" class="nucypher-buttons">
                                     <div class="modal-content-item" >
                                         <p class="item-label">Type Nucypher password</p>
                                         <mat-form-field class="item-input">
@@ -28,6 +28,9 @@
                                                 [(ngModel)]="nucypher_password" 
                                                 required>
                                         </mat-form-field>
+                                        <div class="modal-content-item file-line" *ngIf="grant_locked">
+                                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                        </div>                                      
                                     </div>  
                                     <button mat-button [disabled]="grant_locked" class="action-button" (click)="grantAccess(grant)">
                                         Grant
@@ -53,9 +56,12 @@
                                 <p class="researcher-location">
                                     {{grant.label}}
                                 </p>
-                                <button mat-button class="action-button" (click)="decryptData(grant)">
+                                <button mat-button [disabled]="decrypt_locked" class="action-button" (click)="decryptData(grant)">
                                     Decrypt
                                 </button>
+                                <div class="modal-content-item file-line" *ngIf="decrypt_locked">
+                                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                </div>
                             </div>
                     </div>
             </div>
