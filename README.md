@@ -6,6 +6,9 @@ VaccineX is a distributed marketplace for genome data used in vaccine developmen
 * Distributed - The network is censorship-resistant and allows research teams share pre-encrypted genome data using IPFS without centralized cloud services.
 * Decentralized - VaccineX is a blockchain agnostic project which gives users an ability pay for digital assets using Ethereum and ERC20 tokens.
 
+## Project presentation
+You could found a project presentation [here](https://drive.google.com/file/d/1e9SeVeltAzGXgycJx-RmXVoIQvskY6PE/view?usp=sharing)
+
 ## Requirements
 
 * Node >10
