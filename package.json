@@ -27,6 +27,7 @@
     "axios": "^0.19.2",
     "bip39": "^3.0.2",
     "conseiljs": "^0.4.3",
+    "dotenv": "^8.2.0",
     "ipfs-mini": "^1.1.5",
     "local-storage": "^2.0.0",
     "ngx-material-file-input": "^2.1.1",

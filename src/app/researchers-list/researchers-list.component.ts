@@ -104,7 +104,7 @@ export class ResearchersListComponent implements OnInit {
     await this.api.grantAccess$(this.grant_request).subscribe(async res => {
       console.log(res)
     }, err => console.log(err));
-    // await this.approveTransfer(grant.bob_ethereum_account, grant.token_id)
+    await this.approveTransfer(grant.bob_ethereum_account, grant.token_id)
     this.submition_request.hash_key = await grant.hash_key
     console.log(this.submition_request)
     await this.submitGrant(this.submition_request)
@@ -149,6 +149,8 @@ export class ResearchersListComponent implements OnInit {
     await this.api.decryptData$(data).subscribe(async (res) => {
       if (res != null) {
         await console.log(res)
+        let data = JSON.stringify(res)
+        await this.downloadFile(data, "application/json")
     }})
   }
 
@@ -167,6 +169,16 @@ export class ResearchersListComponent implements OnInit {
         this.decrypting_request.policy_info = await res
       }
     })
+  }
+
+  downloadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type});
+    let url = window.URL || window.webkitURL;
+    let blob_uri = url.createObjectURL(blob)
+    let pwa = window.open(blob_uri);
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
   }
 
   async getReceipt(id: number) {
