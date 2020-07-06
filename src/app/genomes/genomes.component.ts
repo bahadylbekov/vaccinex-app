@@ -12,7 +12,6 @@ export class GenomesComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    public auth: AuthService,
   ) { }
 
   ngOnInit(): void {

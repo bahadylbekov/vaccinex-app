@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TezosWalletService } from './tezos-wallet.service';
+import { Web3Service } from './web3.service';
 
-describe('TezosWalletService', () => {
-  let service: TezosWalletService;
+describe('Web3Service', () => {
+  let service: Web3Service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TezosWalletService);
+    service = TestBed.inject(Web3Service);
   });
 
   it('should be created', () => {

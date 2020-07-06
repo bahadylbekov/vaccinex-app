@@ -1,0 +1,196 @@
+.content{
+    padding: 60px 30px;
+    font-family: CircularStd;
+}
+
+.vaccine-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.vaccine-logo {
+    padding: 0 10px;
+}
+
+.vaccine-information {
+    padding: 0 80px 0 0;
+}
+
+.vaccine-information-text{
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    color: #1E1E1E;
+
+    &.title {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    &.description {
+        max-width: 500px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #42505C;    
+    }
+}
+
+
+.vaccine-buttons{
+    margin-left:auto
+}
+
+.acc-btn {
+    border-radius: 20px;
+    background: green;
+    padding: 11px 30px;
+    color: white;
+    margin-right: 10px;
+
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.p-btn {
+    border-radius: 100%;
+    background: #C4CFDD;
+    color: white;
+    box-shadow: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vaccine-information {
+    margin-top: 60px;
+}
+
+.vaccine-section {
+    margin-top: 30px;
+
+    &.centered {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.vaccine-section-title {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.25px;
+    margin: 0;
+
+    color: #67758D;
+}
+
+.vaccine-section-information {
+    margin-top: 27px;
+    padding: 27px 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;    
+}
+
+.sec-card {
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.25px;
+    color: #000000;
+    margin-bottom: 13px; 
+
+    &.last {
+        margin-bottom: 0;
+    }
+
+    &.key {
+        color: #42505C;
+    }
+}
+
+.vaccine-activity-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.activity-item-text {
+    margin: 0;
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #6468A1;
+
+    &.value {
+        font-size: 13px;
+        line-height: 25px;
+        color: #262C7C;
+    }
+}
+
+.activity-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.activity-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.vaccine-selector {
+    margin-top: 30px;
+}
+
+.modal-button {
+    border-radius: 20px;
+    background: blue;
+    padding: 11px 30px;
+    color: white;
+    font-family: Circular Std;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;  
+
+    &.green {
+        background: green;
+    }
+}

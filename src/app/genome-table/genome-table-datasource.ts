@@ -8,7 +8,7 @@ import { Genome } from 'src/models';
   
 export class GenomeTableDataSource extends DataSource<Genome> {
 
-  constructor(private genomes: Genome[],private paginator: MatPaginator, private sort: MatSort) {
+  constructor(public genomes: Genome[],private paginator: MatPaginator, private sort: MatSort) {
     super();
   }
 

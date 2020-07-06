@@ -4,12 +4,11 @@
         <div *ngFor="let vaccine of vaccines; let organizationIndex = index" class="row-item">
                 <div class="Card vaccines-list-item">
                         <div class="vaccine-information">
-                            <img src="{{vaccine.photo_url}}" class="vaccine-image">
                             <a class="vaccine-title" [routerLink]="['/vaccines', vaccine.vaccine_id]">
                                 {{vaccine.vaccine_name}}
                             </a>
                             <a class="vaccine-title subtitle" [routerLink]="['/vaccines', vaccine.vaccine_id]">
-                                {{vaccine.family}}
+                                {{vaccine.description}}
                             </a>
                         </div>
                 </div>

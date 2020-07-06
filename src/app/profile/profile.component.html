@@ -42,25 +42,25 @@
                 </mat-card>
             </div>
             <div class="col s12 m8 l8 xl8">
-                <p class="profile-section-title">Account</p>
+                <p class="profile-section-title">Nucypher Account</p>
                 <mat-card class="profile-section-information">
                     <div class="user-activity-container">
                         <div class="activity-item">
                             <div class="activity-info">
-                                <p class="activity-item-text">Name</p>
-                                <p class="activity-item-text value">{{tezosAccount.name}}</p>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-info">
-                                <p class="activity-item-text">Balance</p>
-                                <p class="activity-item-text value">{{tezosAccount.balance}}</p>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-info">
                                 <p class="activity-item-text">Address</p>
-                                <p class="activity-item-text value">{{tezosAccount.address}}</p>
+                                <p class="activity-item-text value">{{nucypher_account.address}}</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-info">
+                                <p class="activity-item-text">Signing Key</p>
+                                <p class="activity-item-text value">{{nucypher_account.signing_key}}</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-info">
+                                <p class="activity-item-text">Encrypting Key</p>
+                                <p class="activity-item-text value">{{nucypher_account.encrypting_key}}</p>
                             </div>
                         </div>
                     </div>
@@ -69,11 +69,9 @@
         </div>
     </div>
     <div class="profile-section">
-        <!-- <p class="profile-section-title">Genomes</p> -->
         <app-genome-table></app-genome-table>
     </div>
     <div class="profile-section">
-        <p class="profile-section-title">Researchers</p>
         <app-researchers-list></app-researchers-list>
     </div>
     <div class="profile-section centered">

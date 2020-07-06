@@ -1,0 +1,39 @@
+<div class="modal-container">
+    <p mat-dialog-title class="modal-title">Create new vaccine</p>
+    <div mat-dialog-content class="modal-content">
+      <div class="modal-content-item">
+        <p class="item-label">Vaccine Name</p>
+        <mat-form-field class="item-input">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="vaccine.vaccine_name" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Description</p>
+        <mat-form-field class="item-input">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="vaccine.description" required>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Virus</p>
+        <mat-form-field>
+          <mat-label>Viruses</mat-label>      
+          <mat-select [formControl]="virusesControl" (selectionChange)="onChangeVirus($event)" required>
+            <mat-option *ngFor="let virus of virusesList" [value]="virus">{{virus.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-item">
+        <p class="item-label">Requested amount</p>
+        <mat-form-field class="item-input">
+          <mat-label>Requested amount</mat-label>
+          <input matInput [(ngModel)]="vaccine.requested_amount" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Close</button>
+      <button mat-button (click)="createNewVaccine()" cdkFocusInitial>Save</button>
+    </div>
+  </div>

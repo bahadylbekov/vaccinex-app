@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profile, Genome, Virus, Vaccine, NucypherAccount, EthereumAccount } from '../models';
+import { Profile, Genome, Virus, Vaccine, NucypherAccount, EthereumAccount, Policy, Receipt, NucypherCharacter, NucypherUsername, Grant, DecryptionRequest, EncryptionRequest, RequestedGrant } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   baseURL = 'http://localhost:8000/private';
+  nucypherServiceUri = 'http://localhost:5000'
 
   constructor(private http: HttpClient) { }
 
@@ -113,7 +114,69 @@ export class ApiService {
     return this.http.get(this.baseURL +  '/vaccines/' + id);
   }
 
-  createVaccine(data: Vaccine): Observable<any> {
+  createVaccine$(data: Vaccine): Observable<any> {
     return this.http.post(this.baseURL + '/vaccines', data);
   }
+
+  // NUCYPHER POLICIES SECTION METHODS
+
+  getPolicyByID$(id: number): Observable<any> {
+    return this.http.get(this.baseURL +  '/policies/' + id);
+  }
+
+  createPolicy$(data: Policy): Observable<any> {
+    return this.http.post(this.baseURL + '/policies', data);
+  }  
+
+  // NUCYPHER RECEIPTS SECTION METHODS
+
+  getReceiptByID$(id: number): Observable<any> {
+    return this.http.get(this.baseURL +  '/receipts/' + id);
+  }
+
+  createReceipt$(data: Receipt): Observable<any> {
+    return this.http.post(this.baseURL + '/receipts', data);
+  }    
+
+  // NUCYPHER SERVICE SECTION METHODS
+
+  createNucypherAlice$(data: NucypherCharacter): Observable<any> {
+    return this.http.post(this.nucypherServiceUri + '/user', data)
+  }
+
+  revealPublicKeys$(data: NucypherUsername): Observable<any> {
+    return this.http.post(this.nucypherServiceUri + '/public_keys', data)
+  }
+
+  grantAccess$(data: Grant): Observable<any> {
+    return this.http.post(this.nucypherServiceUri + '/grant', data)
+  }
+
+  decryptData$(data: DecryptionRequest): Observable<any> {
+    return this.http.post(this.nucypherServiceUri + '/decrypt', data)
+  }
+
+  uploadAndEncryptData$(data: any): Observable<any> {
+    return this.http.post(this.nucypherServiceUri + '/encrypt', data)
+  }
+
+
+  // GRANTS HANDLERS SECTION METHODS
+
+  createRequestedGrant$(data: RequestedGrant): Observable<any> {
+    return this.http.post(this.baseURL + '/grants', data)
+  }
+
+  submitRequestedGrant$(data: any): Observable<any> {
+    return this.http.put(this.baseURL + '/grants', data)
+  }
+
+  getRequestedGrants$(alice_nucypher_address: string): Observable<any> {
+    return this.http.get(this.baseURL + '/grants/' + alice_nucypher_address)
+  }
+
+  getCompletedGrants$(): Observable<any> {
+    return this.http.get(this.baseURL + '/completed/grants')
+  }
+
 }

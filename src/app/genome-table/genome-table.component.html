@@ -21,11 +21,6 @@
           <td mat-cell *matCellDef="let row">{{row.price}}</td>
       </ng-container>
   
-        <ng-container matColumnDef="simularity_rate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Simularity</th>
-            <td mat-cell *matCellDef="let row">{{row.simularity_rate}}</td>
-        </ng-container>
-  
         <ng-container matColumnDef="vaccine_name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Vaccine</th>
             <td mat-cell *matCellDef="let row"><a [routerLink]="['/vaccine', row.vaccine_id]">{{row.vaccine_name}}</a></td>
@@ -34,10 +29,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let row">
-            <button *ngIf="row.created_by != created_by" mat-button class="action-button green" (click)="buyToken(row.genome_id, row.price)">
+            <button *ngIf="row.created_by != created_by" mat-button class="action-button green" (click)="requestGrant(row)">
               Buy
             </button>
-            <button *ngIf="row.created_by === created_by" mat-button class="action-button" (click)="sellToken(row.genome_id, row.price)">
+            <button *ngIf="row.created_by === created_by" mat-button class="action-button" (click)="requestGrant(row)">
               Sell
             </button>
           </td>
@@ -47,7 +42,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <mat-paginator #paginator
-          [length]="dataSource?.data.length"
+          [length]="dataSource?.genomes.length"
           [pageIndex]="0"
           [pageSize]="50"
           [pageSizeOptions]="[25, 50, 100, 250]">

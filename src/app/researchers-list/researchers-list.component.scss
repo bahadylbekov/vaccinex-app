@@ -7,6 +7,11 @@
   padding: 30px;
 }
 
+.grants-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .researchers-list-item {
   background: #ffffff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
@@ -31,7 +36,6 @@
   line-height: 23px;
   letter-spacing: 0.25px;
   text-align: center;
-  width: 140px;
   text-decoration: none !important;
   color: #1A1A1A;
   margin: 0;
@@ -44,7 +48,6 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 18px;
-  width: 140px;
   text-align: center;
   color: #79828B !important;
   margin: 0;

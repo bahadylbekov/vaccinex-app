@@ -22,7 +22,8 @@
       <span class="header-title">VaccineX</span>
       <app-new-genome *ngIf="router.url === '/genomes'"></app-new-genome>
       <app-new-virus *ngIf="router.url === '/viruses'"></app-new-virus>
-      <app-new-tezos-account *ngIf="router.url === '/profile'"></app-new-tezos-account>
+      <app-new-vaccine *ngIf="router.url === '/vaccines'"></app-new-vaccine>
+      <app-new-nucypher-account *ngIf="router.url === '/profile'"></app-new-nucypher-account>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

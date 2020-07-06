@@ -38,12 +38,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NewVirusComponent, NewVirusModalComponent } from './new-virus/new-virus.component';
-import { NewTezosAccountComponent, NewTezosAccountModalComponent } from './new-tezos-account/new-tezos-account.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { VaccinesComponent } from './vaccines/vaccines.component';
 import { VaccineComponent } from './vaccine/vaccine.component';
 import { VaccineTableComponent } from './vaccine-table/vaccine-table.component';
+import { NewVaccineComponent, NewVaccineModalComponent } from './new-vaccine/new-vaccine.component';
+import { NewNucypherAccountComponent, NewNucypherAccountModalComponent } from './new-nucypher-account/new-nucypher-account.component';
 
 @NgModule({
   declarations: [
@@ -63,11 +64,13 @@ import { VaccineTableComponent } from './vaccine-table/vaccine-table.component';
     NewGenomeModalComponent,
     NewVirusComponent,
     NewVirusModalComponent,
-    NewTezosAccountComponent,
-    NewTezosAccountModalComponent,
     VaccinesComponent,
     VaccineComponent,
     VaccineTableComponent,
+    NewVaccineComponent,
+    NewVaccineModalComponent,
+    NewNucypherAccountComponent,
+    NewNucypherAccountModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +105,10 @@ import { VaccineTableComponent } from './vaccine-table/vaccine-table.component';
   providers: [],
   entryComponents: [
     NewGenomeModalComponent,
+    NewVirusModalComponent,
+    NewVaccineModalComponent,
+    CreateProfileModalComponent,
+    NewNucypherAccountModalComponent,
   ],
   bootstrap: [AppComponent]
 })

@@ -25,7 +25,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <mat-paginator #paginator
-          [length]="dataSource?.data.length"
+          [length]="dataSource?.vaccines.length"
           [pageIndex]="0"
           [pageSize]="50"
           [pageSizeOptions]="[25, 50, 100, 250]">

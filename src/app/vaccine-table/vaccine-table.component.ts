@@ -34,7 +34,8 @@ export class VaccineTableComponent implements OnInit {
     if (this.router.url.split('/').slice()[1] === 'viruses') {
         const id = this.router.url.split('/').slice(-1).pop()
         this.api.getVaccineByVirus$(id).subscribe(res => {
-        this.createTable(res)
+          console.log(res)
+          this.createTable(res)
       });  
     }
   }

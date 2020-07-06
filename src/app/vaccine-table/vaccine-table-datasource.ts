@@ -7,7 +7,7 @@ import { Vaccine } from 'src/models';
 
 export class VaccineTableDataSource extends DataSource<Vaccine> {
 
-  constructor(private vaccines: Vaccine[],private paginator: MatPaginator, private sort: MatSort) {
+  constructor(public vaccines: Vaccine[],private paginator: MatPaginator, private sort: MatSort) {
     super();
   }
 

@@ -24,26 +24,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    &.secret {
-        justify-content: center;
-        text-align: center;
-        max-width: 300px;
-        flex-direction: column;
-    }
 }
 
 .modal-content-item .item-label {
     margin: 0;
     margin-right: 50px;
     font-family: Circular Std;
-
-    &.title-centered {
-        text-align: center;
-        font-size: 24px;
-        margin: 5px auto;
-        line-height: 28px;
-    }
 }
 
 .modal-content-item .mat-form-field {

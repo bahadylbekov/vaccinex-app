@@ -1,15 +1,64 @@
+<div>
+<div class="grants-container">
+    <h2>Requested Grants</h2>
     <div class="researchers-row section-researchers-list">
-        <div *ngFor="let researcher of researchers; let researcherIndex = index" class="row-item">
-                <div class="Card researchers-list-item">
-                        <div class="researcher-information">
-                            <img src="assets/img/sample.png" class="researcher-image">
-                            <p class="researcher-title">    
-                                {{researcher.name}}
-                            </p>
-                            <p class="researcher-location">
-                                {{researcher.city}}, {{researcher.country}}
-                            </p>
-                        </div>
-                </div>
-        </div>
+            <div *ngFor="let grant of requiredGrants" class="row-item">
+                    <div class="Card researchers-list-item">
+                            <div class="researcher-information">
+                                <p class="researcher-title">    
+                                    {{grant.bob_nucypher_account_name}}
+                                </p>
+                                <p class="researcher-location">
+                                    {{grant.bob_nucypher_account_address}}
+                                </p>
+                                <p class="researcher-location">
+                                    {{grant.label}}
+                                </p>
+                                <button mat-button class="action-button" (click)="openPassword()">
+                                    Try to grant
+                                </button>
+                                <div *ngIf="is_password_opened">
+                                    <div class="modal-content-item" >
+                                        <p class="item-label">Type Nucypher password</p>
+                                        <mat-form-field class="item-input">
+                                            <mat-label>Password</mat-label>
+                                            <input 
+                                                matInput 
+                                                type="password"
+                                                [(ngModel)]="nucypher_password" 
+                                                required>
+                                        </mat-form-field>
+                                    </div>  
+                                    <button mat-button [disabled]="grant_locked" class="action-button" (click)="grantAccess(grant)">
+                                        Grant
+                                    </button>                              
+                                </div>
+                            </div>
+                    </div>
+            </div>
     </div>
+</div>
+<div class="grants-container">
+    <h2>Completed Grants</h2>
+    <div class="researchers-row section-researchers-list">
+            <div *ngFor="let grant of completedGrants" class="row-item">
+                    <div class="Card researchers-list-item">
+                            <div class="researcher-information">
+                                <p class="researcher-title">    
+                                    {{grant.bob_nucypher_account_name}}
+                                </p>
+                                <p class="researcher-location">
+                                    {{grant.bob_nucypher_account_address}}
+                                </p>
+                                <p class="researcher-location">
+                                    {{grant.label}}
+                                </p>
+                                <button mat-button class="action-button" (click)="decryptData(grant)">
+                                    Decrypt
+                                </button>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+</div>

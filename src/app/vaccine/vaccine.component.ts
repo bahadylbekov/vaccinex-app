@@ -22,7 +22,9 @@ export class VaccineComponent implements OnInit {
 
   loadVaccine() {
     const id = this.router.url.split('/').slice(-1).pop()
-    this.api.getVaccineByID$(id).subscribe(res => res != null ? this.vaccine = res : null, error => console.log(error))
+    this.api.getVaccineByVirus$(id).subscribe(res => {
+      res != null ? this.vaccine = res[0] : null
+    }, error => console.log(error))
   }
 
 }
